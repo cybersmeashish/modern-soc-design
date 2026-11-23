@@ -1,0 +1,77 @@
+{
+  "source_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+  "source_sha256": "64ca6b4161de51ab6af098a7d101d326f14c95e1abf721396cd8a049e8115eeb",
+  "catalog_version": "5.2.0",
+  "source_last_modified": "2026-10-22T11:30:00.00000-00:00",
+  "controls": [
+    {
+      "id": "AC-3",
+      "title": "Access Enforcement"
+    },
+    {
+      "id": "AC-6",
+      "title": "Least Privilege"
+    },
+    {
+      "id": "AU-2",
+      "title": "Event Logging"
+    },
+    {
+      "id": "AU-3",
+      "title": "Content of Audit Records"
+    },
+    {
+      "id": "AU-6",
+      "title": "Audit Record Review, Analysis, and Reporting"
+    },
+    {
+      "id": "AU-8",
+      "title": "Time Stamps"
+    },
+    {
+      "id": "AU-9",
+      "title": "Protection of Audit Information"
+    },
+    {
+      "id": "AU-11",
+      "title": "Audit Record Retention"
+    },
+    {
+      "id": "AU-12",
+      "title": "Audit Record Generation"
+    },
+    {
+      "id": "CM-3",
+      "title": "Configuration Change Control"
+    },
+    {
+      "id": "CP-9",
+      "title": "System Backup"
+    },
+    {
+      "id": "CP-10",
+      "title": "System Recovery and Reconstitution"
+    },
+    {
+      "id": "IR-4",
+      "title": "Incident Handling"
+    },
+    {
+      "id": "IR-5",
+      "title": "Incident Monitoring"
+    },
+    {
+      "id": "IR-6",
+      "title": "Incident Reporting"
+    },
+    {
+      "id": "SA-9",
+      "title": "External System Services"
+    },
+    {
+      "id": "SI-4",
+      "title": "System Monitoring"
+    }
+  ],
+  "scope": "selected assessment aid; no implemented control or compliance conclusion"
+}

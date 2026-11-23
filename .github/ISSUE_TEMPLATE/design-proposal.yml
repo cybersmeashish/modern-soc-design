@@ -1,0 +1,25 @@
+name: Architecture or constraint proposal
+description: Propose a scoped original decision, constraint or evidence improvement.
+title: "[Design] "
+body:
+  - type: markdown
+    attributes:
+      value: "Use non-confidential synthetic or authorized material. Do not include credentials, real customer data or confidential incident details."
+  - type: input
+    id: scope
+    attributes:
+      label: Layer or pattern and scope
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision, failure mode and trade-off
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary source, proposed or observed evidence, and limitations
+    validations:
+      required: true

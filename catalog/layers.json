@@ -1,0 +1,1242 @@
+{
+  "reviewed_on": "2026-11-23",
+  "scope": "original reference decisions, not deployed controls",
+  "layers": [
+    {
+      "id": "L01",
+      "slug": "mission-and-operating-model",
+      "title": "Mission and operating model",
+      "proposed_owner": "Executive sponsor and SOC service owner",
+      "inputs": "Business services, risk appetite, service obligations",
+      "outputs": "Mandate, scope, coverage model and decision rights",
+      "source_ids": [
+        "nist-csf",
+        "nist-ir"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L01-C01",
+          "decision": "Name the services, harms and decisions the SOC exists to support.",
+          "failure_mode": "Tool activity replaces measurable service protection.",
+          "acceptance_evidence": "Sponsor-approved mission and prioritized business-service register."
+        },
+        {
+          "id": "L01-C02",
+          "decision": "Separate continuous collection, staffed monitoring, on-call response and incident command.",
+          "failure_mode": "A 24/7 dashboard is presented as 24/7 response capability.",
+          "acceptance_evidence": "Coverage timetable, on-call tests and explicit response commitments."
+        },
+        {
+          "id": "L01-C03",
+          "decision": "Assign decision rights for monitoring, investigation, containment and risk acceptance.",
+          "failure_mode": "Analysts or suppliers make business-impacting decisions without authority.",
+          "acceptance_evidence": "RACI and authorized escalation/containment decision records."
+        },
+        {
+          "id": "L01-C04",
+          "decision": "Choose internal, outsourced or shared delivery with a retained accountable owner.",
+          "failure_mode": "MDR access and responsibilities fall between contract boundaries.",
+          "acceptance_evidence": "Contract/interface review and exercised joint handover."
+        },
+        {
+          "id": "L01-C05",
+          "decision": "Set measurable objectives with denominators, unknowns and review triggers.",
+          "failure_mode": "Activity totals imply effectiveness without known visibility.",
+          "acceptance_evidence": "Metric dictionary tied to service scope and evidence."
+        },
+        {
+          "id": "L01-C06",
+          "decision": "Agree funding, change priorities and escalation for unresolved risk.",
+          "failure_mode": "Platform purchasing displaces people, engineering and recovery investment.",
+          "acceptance_evidence": "Costed options, residual-risk decisions and quarterly roadmap."
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "slug": "asset-and-risk-context",
+      "title": "Asset, identity and business context",
+      "proposed_owner": "Asset owners and security architecture",
+      "inputs": "Asset inventory, service dependencies, identity directories",
+      "outputs": "Versioned criticality and authority context",
+      "source_ids": [
+        "nist-csf",
+        "nist-zero-trust"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L02-C01",
+          "decision": "Define the inventory boundary, exclusions and discovery sources.",
+          "failure_mode": "Unknown assets disappear from the coverage denominator.",
+          "acceptance_evidence": "Inventory reconciliation with explicit unidentified and excluded records."
+        },
+        {
+          "id": "L02-C02",
+          "decision": "Use tenant/provider-qualified immutable identifiers and historical validity.",
+          "failure_mode": "Reused IP addresses or names merge unrelated systems.",
+          "acceptance_evidence": "Collision, reassignment and historical-lookup cases."
+        },
+        {
+          "id": "L02-C03",
+          "decision": "Record criticality, data class, action owner and recovery dependencies.",
+          "failure_mode": "Response choices ignore service impact or regulated information.",
+          "acceptance_evidence": "Business-owner review of critical paths and proposed actions."
+        },
+        {
+          "id": "L02-C04",
+          "decision": "Preserve provenance, confidence and expiry for context joins.",
+          "failure_mode": "Stale CMDB or graph context is treated as current truth.",
+          "acceptance_evidence": "Freshness thresholds, conflicting-source cases and unresolved joins."
+        },
+        {
+          "id": "L02-C05",
+          "decision": "Connect human, workload and delegated identities without expanding authority.",
+          "failure_mode": "A powerful service identity masks an unauthorized originating subject.",
+          "acceptance_evidence": "Subject/service/action/resource decision matrix and denied cases."
+        },
+        {
+          "id": "L02-C06",
+          "decision": "Review changes to tools, assets, suppliers and destinations.",
+          "failure_mode": "An integration silently creates a new data exit or response target.",
+          "acceptance_evidence": "Change event linked to ownership and boundary acceptance."
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "slug": "telemetry-producers",
+      "title": "Telemetry producers and visibility",
+      "proposed_owner": "Source-system owners and telemetry engineering",
+      "inputs": "Endpoint, network, identity, cloud, SaaS, application, AI and OT events",
+      "outputs": "Source contracts and observable coverage",
+      "source_ids": [
+        "nist-controls",
+        "otel"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L03-C01",
+          "decision": "Inventory each producer, required event class and accountable owner.",
+          "failure_mode": "Agent installation is mistaken for collection of required events.",
+          "acceptance_evidence": "Source-by-event coverage matrix and deliberately missing-source test."
+        },
+        {
+          "id": "L03-C02",
+          "decision": "Specify required fields, event time, observation time and uncertainty.",
+          "failure_mode": "Incomplete identity or time data produces misleading correlations.",
+          "acceptance_evidence": "Representative records, missing-field handling and time-quality cases."
+        },
+        {
+          "id": "L03-C03",
+          "decision": "Define source permissions, collection scope and sensitive-field handling.",
+          "failure_mode": "Logging grants excessive access or captures secrets and unnecessary content.",
+          "acceptance_evidence": "Permission review and synthetic secret/privacy handling cases."
+        },
+        {
+          "id": "L03-C04",
+          "decision": "Distinguish healthy source, silent source, blocked source and unknown visibility.",
+          "failure_mode": "No events is interpreted as no threats.",
+          "acceptance_evidence": "Independent health signal and silence/permission-failure exercise."
+        },
+        {
+          "id": "L03-C05",
+          "decision": "Authorize collection changes on production and safety-sensitive systems.",
+          "failure_mode": "Sensor deployment or active polling disrupts essential operations.",
+          "acceptance_evidence": "Owner-approved change window and OT-safe collection review."
+        },
+        {
+          "id": "L03-C06",
+          "decision": "Protect telemetry ingestion as an attacker-controlled input boundary.",
+          "failure_mode": "Events trigger parser execution, unsafe rendering or agent instructions.",
+          "acceptance_evidence": "Malformed/oversized/adversarial records handled without privileged action."
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "slug": "edge-collection-and-buffering",
+      "title": "Edge collection and buffering",
+      "proposed_owner": "Telemetry engineering and site operator",
+      "inputs": "Source events, connectivity state and local policies",
+      "outputs": "Bounded durable buffers and attributable forwarding",
+      "source_ids": [
+        "nist-controls",
+        "otel"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L04-C01",
+          "decision": "Define buffer durability, capacity, priority and maximum outage assumptions.",
+          "failure_mode": "An apparently resilient collector loses events on restart or disk exhaustion.",
+          "acceptance_evidence": "Restart, full-buffer and outage-duration observations."
+        },
+        {
+          "id": "L04-C02",
+          "decision": "Declare duplicate/replay behavior and stable event identifiers.",
+          "failure_mode": "Reconnect duplicates inflate alerts or repeat response actions.",
+          "acceptance_evidence": "Replay/dedup cases with preserved evidence lineage."
+        },
+        {
+          "id": "L04-C03",
+          "decision": "Keep local identity, configuration, time and licensing dependencies visible.",
+          "failure_mode": "A disconnected collector cannot authenticate, timestamp or operate.",
+          "acceptance_evidence": "Dependency inventory and local-operation failure exercise."
+        },
+        {
+          "id": "L04-C04",
+          "decision": "Encrypt buffered data and separate key custody from routine operations.",
+          "failure_mode": "Lost edge devices expose evidence or make recovery impossible.",
+          "acceptance_evidence": "Key/owner map, authorized recovery and denied-read checks."
+        },
+        {
+          "id": "L04-C05",
+          "decision": "Control offline updates and imports with independent verification inputs.",
+          "failure_mode": "A compromised or stale bundle becomes an authorized configuration.",
+          "acceptance_evidence": "Signer/digest/target/version checks and failed-admission cases."
+        },
+        {
+          "id": "L04-C06",
+          "decision": "Expose backlog, dropped records, clock uncertainty and resynchronization status.",
+          "failure_mode": "Central reporting silently treats an isolated site as current.",
+          "acceptance_evidence": "Local health report and freshness-aware central evidence view."
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "slug": "ingestion-and-streaming",
+      "title": "Ingestion and streaming",
+      "proposed_owner": "Platform and telemetry engineering",
+      "inputs": "Authenticated batches, event streams and source metadata",
+      "outputs": "Durable queues, quarantine and delivery accounting",
+      "source_ids": [
+        "otel",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L05-C01",
+          "decision": "Specify acknowledgement, durability and end-to-end delivery semantics.",
+          "failure_mode": "Broker acknowledgement is presented as durable searchable evidence.",
+          "acceptance_evidence": "Crash/replay tests across acknowledgement and downstream checkpoint boundaries."
+        },
+        {
+          "id": "L05-C02",
+          "decision": "Choose partition keys and make ordering scope explicit.",
+          "failure_mode": "Cross-partition or cross-source records are given a false total order.",
+          "acceptance_evidence": "Tenant/resource partition review and out-of-order event cases."
+        },
+        {
+          "id": "L05-C03",
+          "decision": "Apply quotas, backpressure and priority with explicit loss policies.",
+          "failure_mode": "Bursts overload the platform or silently discard critical sources.",
+          "acceptance_evidence": "Burst/backlog exercise, priority decisions and loss accounting."
+        },
+        {
+          "id": "L05-C04",
+          "decision": "Quarantine malformed, unauthorized or incompatible records.",
+          "failure_mode": "Bad events poison processing or vanish without trace.",
+          "acceptance_evidence": "Dead-letter reason, protected raw sample and reprocessing workflow."
+        },
+        {
+          "id": "L05-C05",
+          "decision": "Isolate tenants and regions in queues, credentials and routing.",
+          "failure_mode": "Routing mistakes mix customers or violate placement constraints.",
+          "acceptance_evidence": "Cross-tenant/region negative cases at ingestion and storage."
+        },
+        {
+          "id": "L05-C06",
+          "decision": "Authenticate callbacks and constrain retry loops and billing exposure.",
+          "failure_mode": "Forged callbacks or infinite retries create work, cost or duplicate actions.",
+          "acceptance_evidence": "Callback authenticity tests, finite retries and cost/queue alerts."
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "slug": "schema-time-and-lineage",
+      "title": "Schema, time and lineage",
+      "proposed_owner": "Data engineering and detection engineering",
+      "inputs": "Raw events, schema versions and parser rules",
+      "outputs": "Normalized records linked to source evidence",
+      "source_ids": [
+        "ocsf",
+        "otel",
+        "sigma"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L06-C01",
+          "decision": "Select and pin canonical schema versions and producer mappings.",
+          "failure_mode": "Field meanings change while detections continue to run.",
+          "acceptance_evidence": "Versioned mapping contract and schema migration cases."
+        },
+        {
+          "id": "L06-C02",
+          "decision": "Retain raw-to-normalized lineage according to approved privacy/retention policy.",
+          "failure_mode": "Transformation loses investigative context or retains sensitive data indefinitely.",
+          "acceptance_evidence": "Traceable source references and controlled redaction/deletion tests."
+        },
+        {
+          "id": "L06-C03",
+          "decision": "Preserve event time, observed time and explicit clock uncertainty.",
+          "failure_mode": "Collector receipt time is substituted for the original event time.",
+          "acceptance_evidence": "Skew, invalid-time and uncertain-ordering cases."
+        },
+        {
+          "id": "L06-C04",
+          "decision": "Treat missing, unmapped and conflicting fields as visible quality states.",
+          "failure_mode": "A missing identity/classification becomes a benign default.",
+          "acceptance_evidence": "Quality report and quarantine/uncertainty behavior."
+        },
+        {
+          "id": "L06-C05",
+          "decision": "Bound parsing, decompression and rendering of untrusted content.",
+          "failure_mode": "Events exhaust resources or execute through analysts or downstream tools.",
+          "acceptance_evidence": "Resource limits and hostile-content handling cases."
+        },
+        {
+          "id": "L06-C06",
+          "decision": "Test detection semantics on normalized data, not just schema validity.",
+          "failure_mode": "A valid conversion changes matching, time windows or entity meaning.",
+          "acceptance_evidence": "Paired raw/normalized detection cases and backend-specific results."
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "slug": "data-platform-and-retention",
+      "title": "Security data platform and retention",
+      "proposed_owner": "Data platform, privacy and evidence owners",
+      "inputs": "Raw/normalized events, cases, classification and retention decisions",
+      "outputs": "Queryable authorized evidence and managed lifecycle",
+      "source_ids": [
+        "nist-controls",
+        "aws-lake"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L07-C01",
+          "decision": "Separate raw, normalized, indexed, aggregate and case-evidence retention.",
+          "failure_mode": "One retention setting hides duplicated storage or deletes necessary evidence.",
+          "acceptance_evidence": "Tier-specific inventory and lifecycle policy with business owners."
+        },
+        {
+          "id": "L07-C02",
+          "decision": "Enforce tenant, purpose, field and region authorization through every query/export path.",
+          "failure_mode": "An analyst UI filter is bypassed by a lower-level query engine.",
+          "acceptance_evidence": "Storage/API/export negative cases and authorized controls."
+        },
+        {
+          "id": "L07-C03",
+          "decision": "Model index, replication, compression, cardinality and query concurrency separately.",
+          "failure_mode": "Raw ingest arithmetic is mistaken for SIEM capacity.",
+          "acceptance_evidence": "Declared assumptions followed by real workload-specific measurements."
+        },
+        {
+          "id": "L07-C04",
+          "decision": "Control legal holds, deletion, backups and derived copies explicitly.",
+          "failure_mode": "A deletion or hold applies only to the primary index.",
+          "acceptance_evidence": "Lifecycle dependency map and approved hold/deletion exercises."
+        },
+        {
+          "id": "L07-C05",
+          "decision": "Design key ownership, rotation and restoration for each evidence tier.",
+          "failure_mode": "Key loss makes archived evidence unusable or admins can decrypt all tenants.",
+          "acceptance_evidence": "Custody map, separation-of-duty checks and authorized restore evidence."
+        },
+        {
+          "id": "L07-C06",
+          "decision": "Preserve portability and the meaning of exported evidence.",
+          "failure_mode": "Vendor exit produces unqueryable data or loses identities and timestamps.",
+          "acceptance_evidence": "Schema/version manifest and import/re-query validation on an alternative path."
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "slug": "context-and-threat-intelligence",
+      "title": "Context and threat intelligence",
+      "proposed_owner": "Threat intelligence and context owners",
+      "inputs": "Indicators, business context, identities and supplier intelligence",
+      "outputs": "Bounded contextual joins with confidence and provenance",
+      "source_ids": [
+        "mitre-attack",
+        "first-tlp",
+        "nist-csf"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L08-C01",
+          "decision": "Record intelligence provenance, confidence, expiry and allowed use.",
+          "failure_mode": "A stale or untrusted indicator becomes an automatic blocking rule.",
+          "acceptance_evidence": "Source/expiry review and low-confidence or expired-indicator cases."
+        },
+        {
+          "id": "L08-C02",
+          "decision": "Respect sharing markings, licensing, recipients and disclosure purpose.",
+          "failure_mode": "Intelligence or customer evidence is redistributed outside permitted scope.",
+          "acceptance_evidence": "Recipient/purpose controls and denied-disclosure cases."
+        },
+        {
+          "id": "L08-C03",
+          "decision": "Resolve entities with tenant/time boundaries and conflict handling.",
+          "failure_mode": "Shared infrastructure or reused identifiers create false attribution.",
+          "acceptance_evidence": "Ambiguous joins preserved as unknown, with reviewer evidence."
+        },
+        {
+          "id": "L08-C04",
+          "decision": "Distinguish observations, analytic inference and actor attribution.",
+          "failure_mode": "A technique or indicator match is presented as proof of who attacked.",
+          "acceptance_evidence": "Claim-by-claim source trail and alternative explanations."
+        },
+        {
+          "id": "L08-C05",
+          "decision": "Protect enrichment services from arbitrary URLs and resource exhaustion.",
+          "failure_mode": "Attacker-supplied indicators trigger SSRF, egress or lookup storms.",
+          "acceptance_evidence": "Allowed destinations, bounded lookups and failure behavior."
+        },
+        {
+          "id": "L08-C06",
+          "decision": "Retain historical context needed to reproduce a decision.",
+          "failure_mode": "Later context updates rewrite the reason for an earlier alert.",
+          "acceptance_evidence": "Versioned enrichment snapshot and reproducible case reasoning."
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "slug": "detection-engineering",
+      "title": "Detection engineering and content lifecycle",
+      "proposed_owner": "Detection engineering and domain owners",
+      "inputs": "Threat hypotheses, telemetry contracts and backend semantics",
+      "outputs": "Versioned rules, evaluation evidence and known gaps",
+      "source_ids": [
+        "sigma",
+        "mitre-attack",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L09-C01",
+          "decision": "Define each detection as a falsifiable hypothesis with required data and expected behavior.",
+          "failure_mode": "A technique label is mistaken for operational coverage.",
+          "acceptance_evidence": "Required source/field list, positive cases and limitations."
+        },
+        {
+          "id": "L09-C02",
+          "decision": "Keep content, dependencies, schemas and backend versions under reviewable change control.",
+          "failure_mode": "A parser or rule update silently changes protection.",
+          "acceptance_evidence": "Versioned change, reviewer, regression results and rollback artifact."
+        },
+        {
+          "id": "L09-C03",
+          "decision": "Test benign cases, missing data, time boundaries and duplicates alongside attack cases.",
+          "failure_mode": "A detector fires only on its authored example or floods analysts.",
+          "acceptance_evidence": "Held-out/benign cases, missed cases and correctly scoped rates."
+        },
+        {
+          "id": "L09-C04",
+          "decision": "Translate and verify Sigma or other portable logic on the actual target backend.",
+          "failure_mode": "A portable syntax file is assumed to have identical query semantics.",
+          "acceptance_evidence": "Backend-specific output and expected match/no-match evidence."
+        },
+        {
+          "id": "L09-C05",
+          "decision": "Measure rule ownership, health, drift and retirement conditions.",
+          "failure_mode": "Broken, stale or duplicate detections remain enabled without accountability.",
+          "acceptance_evidence": "Detection health report and owner-approved tuning/deprecation."
+        },
+        {
+          "id": "L09-C06",
+          "decision": "Separate rule promotion from changing response authority.",
+          "failure_mode": "A signed rule bundle indirectly authorizes destructive tool actions.",
+          "acceptance_evidence": "Independent response policy review and denied authority-expansion case."
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "slug": "analytics-and-ueba",
+      "title": "Analytics, UEBA and model assurance",
+      "proposed_owner": "Analytics owners and privacy reviewers",
+      "inputs": "Scoped behavioral features, labels and evaluation data",
+      "outputs": "Risk signals with explanations and uncertainty",
+      "source_ids": [
+        "nist-ai",
+        "nist-csf"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L10-C01",
+          "decision": "Define the model task, population, feature rights and decision use.",
+          "failure_mode": "Profiling expands beyond the approved security purpose.",
+          "acceptance_evidence": "Use-case/data review and excluded decisions."
+        },
+        {
+          "id": "L10-C02",
+          "decision": "Preserve label provenance and prevent adversarial feedback from becoming truth.",
+          "failure_mode": "Poisoned labels or analyst automation loops corrupt learning.",
+          "acceptance_evidence": "Label audit, feedback admission and poisoning/failure hypotheses."
+        },
+        {
+          "id": "L10-C03",
+          "decision": "Test thresholds with base rates, subgroup behavior and practical alert burden.",
+          "failure_mode": "High accuracy on an artificial set is presented as useful rare-event detection.",
+          "acceptance_evidence": "Confusion data, denominators, selection limits and analyst-load estimate."
+        },
+        {
+          "id": "L10-C04",
+          "decision": "Track drift, feature availability and confidence decay.",
+          "failure_mode": "A changed workforce or identity source invalidates the original baseline.",
+          "acceptance_evidence": "Re-evaluation triggers and degraded/unknown-state handling."
+        },
+        {
+          "id": "L10-C05",
+          "decision": "Make explanations traceable to permitted source evidence.",
+          "failure_mode": "A risk score invents causal attribution or hides unauthorized context.",
+          "acceptance_evidence": "Source-linked explanation, allowed evidence and alternative interpretations."
+        },
+        {
+          "id": "L10-C06",
+          "decision": "Keep statistical risk separate from resource authorization and incident command.",
+          "failure_mode": "A model score grants access, approves containment or declares an incident.",
+          "acceptance_evidence": "Independent policy/owner decision and rejected score-only action."
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "slug": "alert-triage-and-analyst-experience",
+      "title": "Alert triage and analyst experience",
+      "proposed_owner": "SOC operations and case owners",
+      "inputs": "Detections, context, visibility states and service impact",
+      "outputs": "Prioritized review queues and attributable dispositions",
+      "source_ids": [
+        "nist-ir",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L11-C01",
+          "decision": "Prioritize by business impact, confidence, exposure and known visibility.",
+          "failure_mode": "Numerical severity suppresses critical but uncertain cases.",
+          "acceptance_evidence": "Priority rationale, missing-context cases and owner escalation."
+        },
+        {
+          "id": "L11-C02",
+          "decision": "Deduplicate without erasing distinct actors, resources or repeated harm.",
+          "failure_mode": "A suppression rule hides continuing compromise.",
+          "acceptance_evidence": "Grouping/reopen cases and access to original contributing events."
+        },
+        {
+          "id": "L11-C03",
+          "decision": "Make routing, acknowledgement, review age and overdue escalation observable.",
+          "failure_mode": "An alert is delivered but never accepted by an accountable analyst.",
+          "acceptance_evidence": "Receipt-to-disposition trace and unattended-queue exercise."
+        },
+        {
+          "id": "L11-C04",
+          "decision": "Render attacker-controlled content safely and mark AI-generated reasoning.",
+          "failure_mode": "Events execute through the console or misleading suggestions appear authoritative.",
+          "acceptance_evidence": "Hostile-content UI review and clear source/AI attribution."
+        },
+        {
+          "id": "L11-C05",
+          "decision": "Define analyst permissions and purposeful cross-team handover.",
+          "failure_mode": "Convenient case sharing broadens tenant or sensitive-data access.",
+          "acceptance_evidence": "Case/field permissions and authorized/denied handover checks."
+        },
+        {
+          "id": "L11-C06",
+          "decision": "Represent data gaps and detection outages separately from a quiet queue.",
+          "failure_mode": "An empty dashboard is reported as effective security.",
+          "acceptance_evidence": "Visibility status surfaced in queue and executive report."
+        }
+      ]
+    },
+    {
+      "id": "L12",
+      "slug": "investigation-forensics-and-cases",
+      "title": "Investigation, forensics and case evidence",
+      "proposed_owner": "Incident investigators and evidence custodians",
+      "inputs": "Scoped events, evidence references and investigation authority",
+      "outputs": "Reproducible case record and controlled evidence access",
+      "source_ids": [
+        "nist-ir",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L12-C01",
+          "decision": "Define case state, evidence scope, investigator authority and provenance.",
+          "failure_mode": "The case combines unsupported assertions or unauthorized records.",
+          "acceptance_evidence": "Attributable evidence-to-claim index and subject/tenant access checks."
+        },
+        {
+          "id": "L12-C02",
+          "decision": "Preserve original evidence separately from analysis and derived copies.",
+          "failure_mode": "Normalization or analyst edits overwrite the source record.",
+          "acceptance_evidence": "Raw/derived distinction, protected original and reproducible transformations."
+        },
+        {
+          "id": "L12-C03",
+          "decision": "Record custody, hashes and independent anchors with honest tamper limits.",
+          "failure_mode": "A hash chain is claimed to prove completeness or trustworthy event time.",
+          "acceptance_evidence": "Alteration/gap checks and explicit anchor/time limitations."
+        },
+        {
+          "id": "L12-C04",
+          "decision": "Handle uncertain time and partial ordering instead of fabricating chronology.",
+          "failure_mode": "Clock skew creates a false sequence or attribution.",
+          "acceptance_evidence": "Event/observation times, uncertainty bounds and competing timelines."
+        },
+        {
+          "id": "L12-C05",
+          "decision": "Control export recipients, fields, purpose and retention/hold decisions.",
+          "failure_mode": "A valid investigator session permits unrestricted external disclosure.",
+          "acceptance_evidence": "Purpose-bound export and invalid-recipient/classification cases."
+        },
+        {
+          "id": "L12-C06",
+          "decision": "Keep investigation continuity available when central systems fail.",
+          "failure_mode": "Loss of case tooling destroys local decisions or evidence custody.",
+          "acceptance_evidence": "Offline procedure, locally accepted owners and reconciled handover."
+        }
+      ]
+    },
+    {
+      "id": "L13",
+      "slug": "response-orchestration",
+      "title": "Response orchestration and action governance",
+      "proposed_owner": "Response service owners and business process owners",
+      "inputs": "Action proposals, independent identity, policy and approvals",
+      "outputs": "Bounded attributable actions and observed side effects",
+      "source_ids": [
+        "nist-zero-trust",
+        "nist-ir",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L13-C01",
+          "decision": "Authorize subject, service, action, object, tenant and purpose independently of alert/model text.",
+          "failure_mode": "A tool proposal or influential alert becomes execution authority.",
+          "acceptance_evidence": "Explicit action matrix and forged-context/foreign-resource denials."
+        },
+        {
+          "id": "L13-C02",
+          "decision": "Bind high-impact approval to exact action, resource, scope and expiry.",
+          "failure_mode": "An approval is reused for another account or a later incident.",
+          "acceptance_evidence": "Different-action/resource, expired and replayed approval cases."
+        },
+        {
+          "id": "L13-C03",
+          "decision": "Specify idempotency, partial effects, retry limits and compensation boundaries.",
+          "failure_mode": "Retries duplicate containment or imply rollback of irreversible actions.",
+          "acceptance_evidence": "Interrupted/repeated/partial-success observations and escalation paths."
+        },
+        {
+          "id": "L13-C04",
+          "decision": "Apply per-tenant action budgets, rate limits and maximum blast radius.",
+          "failure_mode": "One bad rule or compromised agent performs fleet-wide disruption.",
+          "acceptance_evidence": "Batch/rate/resource-limit cases and independent stop control."
+        },
+        {
+          "id": "L13-C05",
+          "decision": "Authenticate callbacks and verify the resulting system state.",
+          "failure_mode": "A forged success callback is counted as containment.",
+          "acceptance_evidence": "Authenticated receipt plus independently observed permitted state change."
+        },
+        {
+          "id": "L13-C06",
+          "decision": "Define emergency and degraded authority without fail-open elevation.",
+          "failure_mode": "Identity/provider outage grants unrestricted local response privileges.",
+          "acceptance_evidence": "Scoped emergency grants, expiry, accountability and denied escalation."
+        }
+      ]
+    },
+    {
+      "id": "L14",
+      "slug": "ai-copilots-and-agents",
+      "title": "AI copilots and bounded agents",
+      "proposed_owner": "AI platform, SOC and action-authority owners",
+      "inputs": "Untrusted events, scoped retrieval, models and tool proposals",
+      "outputs": "Evidence-linked assistance subject to independent decisions",
+      "source_ids": [
+        "nist-ai",
+        "nist-zero-trust"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L14-C01",
+          "decision": "Treat logs, retrieved documents, prompts and tool descriptions as untrusted instructions.",
+          "failure_mode": "Attacker-authored evidence redirects the assistant or adds authority.",
+          "acceptance_evidence": "Direct/indirect instruction cases and independently enforced tool policy."
+        },
+        {
+          "id": "L14-C02",
+          "decision": "Apply subject/tenant/field authorization before retrieval enters model context.",
+          "failure_mode": "Post-generation redaction is used to compensate for unauthorized retrieval.",
+          "acceptance_evidence": "Mixed-tenant/document cases and permitted-context controls."
+        },
+        {
+          "id": "L14-C03",
+          "decision": "Register model/provider placement, retention, data use and offline dependencies.",
+          "failure_mode": "Sensitive evidence exits to an unapproved model service.",
+          "acceptance_evidence": "Provider/data-boundary review and allowed/denied egress tests."
+        },
+        {
+          "id": "L14-C04",
+          "decision": "Require evidence-linked outputs and preserve uncertainty and human decision ownership.",
+          "failure_mode": "Confident generated text invents facts, chronology or approval.",
+          "acceptance_evidence": "Unsupported-claim cases, citations and clear proposed/accepted decision states."
+        },
+        {
+          "id": "L14-C05",
+          "decision": "Bound loops, delegation, costs, concurrency and fallback behavior.",
+          "failure_mode": "Agent failures cause uncontrolled spending, latency or cascading actions.",
+          "acceptance_evidence": "Budget/step/timeout tests and explicitly safe fallback."
+        },
+        {
+          "id": "L14-C06",
+          "decision": "Admit model, retrieval and policy updates through controlled evaluation and rollback.",
+          "failure_mode": "An approved assistant changes behavior after an unreviewed update.",
+          "acceptance_evidence": "Versioned admission, adversarial/benign cases and change-triggered re-evaluation."
+        }
+      ]
+    },
+    {
+      "id": "L15",
+      "slug": "hunting-and-adversary-validation",
+      "title": "Threat hunting and adversary validation",
+      "proposed_owner": "Hunt lead, detection engineering and system owners",
+      "inputs": "Threat hypotheses, visibility records and authorized test scope",
+      "outputs": "Investigations, validated detections and explicit blind spots",
+      "source_ids": [
+        "mitre-attack",
+        "nist-ir"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L15-C01",
+          "decision": "Authorize target, techniques, safety limits and data handling before simulation.",
+          "failure_mode": "A coverage exercise becomes an unapproved production attack.",
+          "acceptance_evidence": "Written scope, domain-owner acceptance and stop conditions."
+        },
+        {
+          "id": "L15-C02",
+          "decision": "Connect ATT&CK mapping to actual sources, fields, conditions and results.",
+          "failure_mode": "Technique counts or heatmaps are presented as tested detection coverage.",
+          "acceptance_evidence": "Versioned mapping plus observed detect/miss outcomes."
+        },
+        {
+          "id": "L15-C03",
+          "decision": "Maintain benign controls and negative findings with visibility qualifications.",
+          "failure_mode": "A hunt with absent telemetry is reported as absence of compromise.",
+          "acceptance_evidence": "Required-data checks, negative-result limits and missing-evidence cases."
+        },
+        {
+          "id": "L15-C04",
+          "decision": "Exercise prevention, detection, investigation and response as separate claims.",
+          "failure_mode": "A blocked payload is mistaken for a tested full incident workflow.",
+          "acceptance_evidence": "Distinct stage observations and unresolved transitions."
+        },
+        {
+          "id": "L15-C05",
+          "decision": "Convert confirmed findings into reviewed reusable content and regression evidence.",
+          "failure_mode": "A one-off successful exercise does not improve sustained operations.",
+          "acceptance_evidence": "Finding-to-rule/playbook change and reproducible retest."
+        },
+        {
+          "id": "L15-C06",
+          "decision": "Respect OT/process constraints and use safe synthetic alternatives where necessary.",
+          "failure_mode": "Active testing threatens physical safety or essential availability.",
+          "acceptance_evidence": "Safety-owner authorization and bounded passive/simulation method."
+        }
+      ]
+    },
+    {
+      "id": "L16",
+      "slug": "incident-command-and-recovery",
+      "title": "Incident command and business recovery",
+      "proposed_owner": "Incident commander, service owners and legal/privacy advisers",
+      "inputs": "Confirmed/uncertain incident evidence, dependencies and harm",
+      "outputs": "Accountable containment, communications and recovery decisions",
+      "source_ids": [
+        "nist-ir",
+        "nist-ot",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L16-C01",
+          "decision": "Define activation, authority, incident ownership and business impact criteria.",
+          "failure_mode": "Uncertain alerts trigger conflicting command or premature public conclusions.",
+          "acceptance_evidence": "Escalation exercise and accepted command/decision records."
+        },
+        {
+          "id": "L16-C02",
+          "decision": "Coordinate containment with safety, continuity and evidence preservation.",
+          "failure_mode": "An automated security action causes greater business or physical harm.",
+          "acceptance_evidence": "Trade-off decision and process-owner-approved containment exercise."
+        },
+        {
+          "id": "L16-C03",
+          "decision": "Establish secure communications and local decision channels during outages.",
+          "failure_mode": "Compromised or unavailable identity/communications prevents command.",
+          "acceptance_evidence": "Out-of-band contact validation and loss-of-connectivity exercise."
+        },
+        {
+          "id": "L16-C04",
+          "decision": "Assess notification duties for the entity, jurisdiction, incident and agreement.",
+          "failure_mode": "Generic time windows are incorrectly treated as universally applicable law.",
+          "acceptance_evidence": "Current applicability review by the responsible legal/privacy owners."
+        },
+        {
+          "id": "L16-C05",
+          "decision": "Restore identity, keys, configuration, data and pending-action state with explicit loss.",
+          "failure_mode": "A database restore is presented as restoration of the whole SOC or business.",
+          "acceptance_evidence": "Measured scoped restoration, missing records and remaining dependencies."
+        },
+        {
+          "id": "L16-C06",
+          "decision": "Preserve learning, decisions and follow-through after recovery.",
+          "failure_mode": "Lessons remain narrative and recurring causes are not treated.",
+          "acceptance_evidence": "Owned corrective actions, priority decision and evidence-based retest."
+        }
+      ]
+    },
+    {
+      "id": "L17",
+      "slug": "soc-identity-and-privileged-access",
+      "title": "SOC identity and privileged access",
+      "proposed_owner": "IAM, platform and evidence owners",
+      "inputs": "Human/workload identities, resource policy and emergency authority",
+      "outputs": "Scoped sessions, service grants and attributable administration",
+      "source_ids": [
+        "nist-zero-trust",
+        "nist-controls",
+        "nist-pqc"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L17-C01",
+          "decision": "Enforce resource/tenant/purpose permissions beneath consoles and workflow tools.",
+          "failure_mode": "An authorized dashboard hides broad storage or API permissions.",
+          "acceptance_evidence": "Direct API/storage/export denial cases and legitimate-user controls."
+        },
+        {
+          "id": "L17-C02",
+          "decision": "Separate platform admin, evidence reader, key custodian and action approver.",
+          "failure_mode": "One operator can grant actions, decrypt records and erase the evidence.",
+          "acceptance_evidence": "Role/duty matrix and privileged-operation review."
+        },
+        {
+          "id": "L17-C03",
+          "decision": "Use verified request-bound human and workload context with explicit delegation.",
+          "failure_mode": "Agent or service credentials inherit broader authority than the user.",
+          "acceptance_evidence": "Issuer/audience/expiry/delegation checks and denied privilege expansion."
+        },
+        {
+          "id": "L17-C04",
+          "decision": "Manage secret distribution, rotation, revocation and unavailable identity services.",
+          "failure_mode": "Revoked credentials or stale local state remain usable without accountability.",
+          "acceptance_evidence": "Rotation/revocation/offline cases with bounded local authority."
+        },
+        {
+          "id": "L17-C05",
+          "decision": "Make emergency access scoped, time-bounded and independently reviewable.",
+          "failure_mode": "Emergency accounts become persistent unreviewed bypasses.",
+          "acceptance_evidence": "Grant, usage, expiry and review records."
+        },
+        {
+          "id": "L17-C06",
+          "decision": "Inventory cryptographic purpose and migration dependencies separately.",
+          "failure_mode": "A generic quantum-safe claim ignores authentication, signatures or archived evidence.",
+          "acceptance_evidence": "Purpose-specific crypto inventory and implementation-specific compatibility plan."
+        }
+      ]
+    },
+    {
+      "id": "L18",
+      "slug": "platform-security-and-change",
+      "title": "Platform security, supply chain and change",
+      "proposed_owner": "Platform engineering and release owners",
+      "inputs": "Infrastructure, detection/model packages and approved changes",
+      "outputs": "Hardened platform and traceable configuration releases",
+      "source_ids": [
+        "nist-controls",
+        "sigma"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L18-C01",
+          "decision": "Separate development, evaluation, production and privileged release contexts.",
+          "failure_mode": "An untrusted contribution inherits production secrets or publish rights.",
+          "acceptance_evidence": "Environment/permission boundaries and untrusted-change cases."
+        },
+        {
+          "id": "L18-C02",
+          "decision": "Pin and inventory components, build inputs and support dependencies.",
+          "failure_mode": "Unknown plugins, libraries or licensing dependencies undermine recovery or offline operation.",
+          "acceptance_evidence": "Component/dependency register and lifecycle ownership."
+        },
+        {
+          "id": "L18-C03",
+          "decision": "Verify package target, signer, digest, version and approval before admission.",
+          "failure_mode": "Integrity checking accepts an unexpected signer, wrong site or replayed package.",
+          "acceptance_evidence": "Modified-artifact, wrong-target/signer and rollback/replay cases."
+        },
+        {
+          "id": "L18-C04",
+          "decision": "Protect pipeline credentials, signing keys and privileged configuration.",
+          "failure_mode": "Content authors can self-approve privileged platform changes.",
+          "acceptance_evidence": "Release-role separation and reviewed trust-input handling."
+        },
+        {
+          "id": "L18-C05",
+          "decision": "Stage changes with measured rollback criteria and residual-state checks.",
+          "failure_mode": "A reverted deployment leaves permissions, queues or model state changed.",
+          "acceptance_evidence": "Failed-update exercise and complete state-difference review."
+        },
+        {
+          "id": "L18-C06",
+          "decision": "Harden the platform without equating container isolation with full trust.",
+          "failure_mode": "A restricted container is called a secure SOC while identity and data controls remain absent.",
+          "acceptance_evidence": "Host/runtime/network/control-plane threat review and explicit missing evidence."
+        }
+      ]
+    },
+    {
+      "id": "L19",
+      "slug": "resilience-and-disaster-recovery",
+      "title": "Resilience and disaster recovery",
+      "proposed_owner": "SRE, platform and recovery owners",
+      "inputs": "Failure domains, business objectives and dependency inventory",
+      "outputs": "Defined degraded modes and measured restoration",
+      "source_ids": [
+        "nist-controls",
+        "nist-ir"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L19-C01",
+          "decision": "Choose failure domains, quorum and placement within sovereignty constraints.",
+          "failure_mode": "Redundant nodes share a dependency or replicate outside approved jurisdiction.",
+          "acceptance_evidence": "Dependency/failure-domain map and permitted placement review."
+        },
+        {
+          "id": "L19-C02",
+          "decision": "Specify behavior during partition, source loss, queue loss and query outage.",
+          "failure_mode": "Response continues on stale evidence or reporting silently implies normal service.",
+          "acceptance_evidence": "Partition/degraded-mode exercises and freshness-aware decisions."
+        },
+        {
+          "id": "L19-C03",
+          "decision": "Treat replicated data, backups and immutable evidence as different protections.",
+          "failure_mode": "Replication copies deletion/corruption and is called a recoverable backup.",
+          "acceptance_evidence": "Independent backup, deletion/corruption and clean-target restoration checks."
+        },
+        {
+          "id": "L19-C04",
+          "decision": "Include identities, keys, policies, licenses and pending actions in recovery scope.",
+          "failure_mode": "Recovered data is inaccessible or stale approvals re-enable response.",
+          "acceptance_evidence": "Full dependency checklist, authority-state restore and replay review."
+        },
+        {
+          "id": "L19-C05",
+          "decision": "Set RPO/RTO per service and measure actual restoration and data loss.",
+          "failure_mode": "Design targets become reported recovery achievements.",
+          "acceptance_evidence": "Timestamped scoped restore trials, missing records and unsuccessful attempts."
+        },
+        {
+          "id": "L19-C06",
+          "decision": "Reconcile regional failback, duplicates and decision ownership.",
+          "failure_mode": "Split-brain actors repeat actions or overwrite incident evidence.",
+          "acceptance_evidence": "Failover/failback cases with deduplication and authority reconciliation."
+        }
+      ]
+    },
+    {
+      "id": "L20",
+      "slug": "privacy-sovereignty-and-governance",
+      "title": "Privacy, sovereignty and governance",
+      "proposed_owner": "Risk, privacy, jurisdiction and key owners",
+      "inputs": "Entity obligations, classifications, operator/supplier boundaries",
+      "outputs": "Applicable control decisions and bounded disclosure",
+      "source_ids": [
+        "nist-csf",
+        "nist-controls",
+        "first-tlp"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L20-C01",
+          "decision": "Define data, administrator, key, support, supplier and recovery authority independently.",
+          "failure_mode": "Local workload placement is presented as complete sovereignty.",
+          "acceptance_evidence": "Boundary register with enforcement, contractual and observed evidence separated."
+        },
+        {
+          "id": "L20-C02",
+          "decision": "Establish entity/jurisdiction/purpose applicability and source versions.",
+          "failure_mode": "Framework mappings are mistaken for legal compliance or national accreditation.",
+          "acceptance_evidence": "Requirements register reviewed by authorized domain advisers."
+        },
+        {
+          "id": "L20-C03",
+          "decision": "Minimize collection, AI context and exports according to approved purpose.",
+          "failure_mode": "Security monitoring becomes uncontrolled sensitive-data accumulation.",
+          "acceptance_evidence": "Field-level rationale, retention and denied disclosure cases."
+        },
+        {
+          "id": "L20-C04",
+          "decision": "Control cross-border replication, support, analytics and recovery paths.",
+          "failure_mode": "A local primary database masks foreign backups or remote administrator access.",
+          "acceptance_evidence": "Workload/evidence/key/recovery placement map and independent assurance gaps."
+        },
+        {
+          "id": "L20-C05",
+          "decision": "Define supplier assurance, exit, access and notification responsibilities.",
+          "failure_mode": "Critical provider changes or failure leave no local owner or alternative.",
+          "acceptance_evidence": "Supplier review, dependency/exit plan and joint failure exercise."
+        },
+        {
+          "id": "L20-C06",
+          "decision": "Give risks, exceptions and policy changes accountable owners and expiry.",
+          "failure_mode": "Permanent exceptions silently weaken the architecture.",
+          "acceptance_evidence": "Accepted residual-risk record, expiration and re-evaluation trigger."
+        }
+      ]
+    },
+    {
+      "id": "L21",
+      "slug": "observability-and-effectiveness",
+      "title": "Observability and effectiveness measures",
+      "proposed_owner": "SRE, detection and SOC service owners",
+      "inputs": "Pipeline/source health, cases, decisions and workload measurements",
+      "outputs": "Freshness-aware service reporting and operational alerts",
+      "source_ids": [
+        "nist-controls",
+        "nist-csf",
+        "otel"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L21-C01",
+          "decision": "Measure source completeness, pipeline loss, delay and schema quality separately.",
+          "failure_mode": "A healthy platform is reported while required sources are absent.",
+          "acceptance_evidence": "Independent health/coverage signals and deliberately missing-source exercise."
+        },
+        {
+          "id": "L21-C02",
+          "decision": "Track current, delayed, missing and unverified evidence states.",
+          "failure_mode": "A disconnected or failed site appears green centrally.",
+          "acceptance_evidence": "Freshness thresholds and reports aged beyond each threshold."
+        },
+        {
+          "id": "L21-C03",
+          "decision": "Define detection, acknowledgement, investigation and containment timing precisely.",
+          "failure_mode": "MTTD/MTTR combine incompatible start/end events or ignore censored cases.",
+          "acceptance_evidence": "Metric dictionary with known origin, uncertainty and excluded/missing events."
+        },
+        {
+          "id": "L21-C04",
+          "decision": "Include alert burden, valid-case preservation and known misses in performance review.",
+          "failure_mode": "Low alert volume is claimed as improved detection quality.",
+          "acceptance_evidence": "Benign/adversarial evaluation with sample and base-rate limitations."
+        },
+        {
+          "id": "L21-C05",
+          "decision": "Protect health and audit signals from the same privileges that run the platform.",
+          "failure_mode": "An attacker disables monitoring and also suppresses the evidence of failure.",
+          "acceptance_evidence": "Independent visibility path and privileged-disable investigation."
+        },
+        {
+          "id": "L21-C06",
+          "decision": "Tie executive reports to scope, decisions and dated evidence.",
+          "failure_mode": "Activity and technique totals are mistaken for reduced business risk.",
+          "acceptance_evidence": "Traceable board scorecard and unresolved-risk/visibility decisions."
+        }
+      ]
+    },
+    {
+      "id": "L22",
+      "slug": "capacity-cost-and-staffing",
+      "title": "Capacity, cost and staffing",
+      "proposed_owner": "Platform economics and SOC workforce owners",
+      "inputs": "EPS, event sizes, retention, workload, staffing and unit-cost assumptions",
+      "outputs": "Planning estimates requiring measured validation",
+      "source_ids": [
+        "nist-csf",
+        "nist-controls"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L22-C01",
+          "decision": "Model steady ingest, bursts, outages and catch-up margin explicitly.",
+          "failure_mode": "Average EPS masks backlog growth or no drain headroom.",
+          "acceptance_evidence": "Input assumptions plus measured workload-specific capacity and failure trials."
+        },
+        {
+          "id": "L22-C02",
+          "decision": "Separate raw bytes, index overhead, compression, replicas and tier duration.",
+          "failure_mode": "Storage estimates double-count or omit required retained copies.",
+          "acceptance_evidence": "Tier model reconciled with representative measured data."
+        },
+        {
+          "id": "L22-C03",
+          "decision": "Account for API/query/egress/model costs and licenses alongside storage.",
+          "failure_mode": "An affordable ingest estimate hides query or AI operating cost.",
+          "acceptance_evidence": "Transparent unit assumptions, sensitivity and cost guardrails."
+        },
+        {
+          "id": "L22-C04",
+          "decision": "Distinguish staffed-seat coverage from workload-driven capacity.",
+          "failure_mode": "A 24/7 rota is assumed to absorb unlimited alert volume.",
+          "acceptance_evidence": "Coverage and handling-time model with utilization and leave assumptions."
+        },
+        {
+          "id": "L22-C05",
+          "decision": "Use distributions, burst behavior and censored outcomes before promising response latency.",
+          "failure_mode": "A mean handling-time estimate is presented as a p95 queue guarantee.",
+          "acceptance_evidence": "Observed distributions and validated queue/scheduling experiment."
+        },
+        {
+          "id": "L22-C06",
+          "decision": "Make trade-offs explicit for sampling, tiers, source selection and outsourcing.",
+          "failure_mode": "Cost reduction silently removes important evidence or ownership.",
+          "acceptance_evidence": "Business-owner decision, visibility impact and residual-risk acceptance."
+        }
+      ]
+    },
+    {
+      "id": "L23",
+      "slug": "interoperability-and-migration",
+      "title": "Interoperability, integration and migration",
+      "proposed_owner": "Integration owners and security architecture",
+      "inputs": "Source/query/case/tool contracts and vendor dependencies",
+      "outputs": "Controlled compatible interfaces and tested exit paths",
+      "source_ids": [
+        "ocsf",
+        "otel",
+        "sigma",
+        "aws-lake",
+        "sentinel"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L23-C01",
+          "decision": "Version data, query, case and response contracts independently.",
+          "failure_mode": "A working event connector is mistaken for operational interoperability.",
+          "acceptance_evidence": "Contract tests across fields, time semantics, identity and actions."
+        },
+        {
+          "id": "L23-C02",
+          "decision": "Verify schema translation and detection behavior on each destination backend.",
+          "failure_mode": "Equivalent-looking rules produce different matches or missed events.",
+          "acceptance_evidence": "Representative events and backend-specific query observations."
+        },
+        {
+          "id": "L23-C03",
+          "decision": "Bound API limits, credentials, retries, callback trust and provider dependencies.",
+          "failure_mode": "Integration fails on throttling or broad credentials expand response authority.",
+          "acceptance_evidence": "Rate/failure/permission cases and controlled retry behavior."
+        },
+        {
+          "id": "L23-C04",
+          "decision": "Plan dual-run migration with deduplication and explicit authority cutover.",
+          "failure_mode": "Two platforms generate duplicate cases or conflicting containment.",
+          "acceptance_evidence": "Parallel comparison, ownership switch and rollback decision."
+        },
+        {
+          "id": "L23-C05",
+          "decision": "Test export/import of raw evidence, context, cases and content.",
+          "failure_mode": "Vendor exit preserves files but loses useful meaning or custody.",
+          "acceptance_evidence": "Alternative-path reproduction with versioned manifests."
+        },
+        {
+          "id": "L23-C06",
+          "decision": "Separate documented provider capability from your own deployment observation.",
+          "failure_mode": "A reference diagram or product page is presented as tested platform behavior.",
+          "acceptance_evidence": "Source/version register and environment-specific evidence requirements."
+        }
+      ]
+    },
+    {
+      "id": "L24",
+      "slug": "assurance-and-acceptance",
+      "title": "Assurance and acceptance evidence",
+      "proposed_owner": "Control owners and independent reviewers",
+      "inputs": "Design constraints, applicability, tests and residual decisions",
+      "outputs": "Traceable acceptance decisions and unresolved gaps",
+      "source_ids": [
+        "nist-controls",
+        "nist-csf",
+        "nist-ir"
+      ],
+      "stage": "reference design",
+      "constraints": [
+        {
+          "id": "L24-C01",
+          "decision": "Separate planned, documented, locally tested, environment-tested and independently reviewed evidence.",
+          "failure_mode": "A template or local arithmetic check is promoted to production assurance.",
+          "acceptance_evidence": "Claim/evidence register with scope, date, inputs and limitations."
+        },
+        {
+          "id": "L24-C02",
+          "decision": "Map selected controls to owners, implementation and actual evidence.",
+          "failure_mode": "A framework crosswalk is reported as a completed assessment.",
+          "acceptance_evidence": "Control-to-evidence records with explicit unresolved gaps."
+        },
+        {
+          "id": "L24-C03",
+          "decision": "Specify benign, denied, degraded and recovery acceptance cases.",
+          "failure_mode": "A happy-path demo becomes a complete control claim.",
+          "acceptance_evidence": "Expected cases, actual outputs, failures and unknowns."
+        },
+        {
+          "id": "L24-C04",
+          "decision": "Pin inputs, versions and source correspondence for reproducibility.",
+          "failure_mode": "A result cannot be tied to the reviewed implementation or assumptions.",
+          "acceptance_evidence": "Input hashes, execution environment and repeatable commands."
+        },
+        {
+          "id": "L24-C05",
+          "decision": "Review evidence age and invalidate claims on relevant changes.",
+          "failure_mode": "A model, parser or identity change leaves an old test reported as current.",
+          "acceptance_evidence": "Review/expiry triggers and stale-evidence test."
+        },
+        {
+          "id": "L24-C06",
+          "decision": "Require environment and business-owner acceptance before rollout or stronger claims.",
+          "failure_mode": "Public reference work implies client adoption or independent validation.",
+          "acceptance_evidence": "Recorded responsible-owner decision and separately substantiated deployment results."
+        }
+      ]
+    }
+  ]
+}

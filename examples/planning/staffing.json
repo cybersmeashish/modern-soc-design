@@ -1,0 +1,9 @@
+{
+  "alerts_per_day": 120,
+  "mean_review_minutes": 10,
+  "continuous_staffed_seats": 2,
+  "paid_hours_per_week": 40,
+  "availability_ratio": 0.8,
+  "productive_ratio": 0.7,
+  "target_utilization": 0.7
+}

@@ -1,0 +1,98 @@
+{
+  "capacity": {
+    "raw_gb_per_day": 86.4,
+    "hot_gb": 2358.72,
+    "additional_cold_gb": 10130.400000000001,
+    "backlog_events": 72000000.0,
+    "raw_queue_gb": 72.0,
+    "catchup_hours": 10.0,
+    "recovery_headroom_eps": 2000.0,
+    "recovery_headroom_available": true,
+    "finite_catchup_possible": true,
+    "scope": "decimal GB; independent non-overlapping hot/additional-cold windows; assumed rates/ratios"
+  },
+  "no_recovery_headroom": {
+    "raw_gb_per_day": 86.4,
+    "hot_gb": 2358.72,
+    "additional_cold_gb": 10130.400000000001,
+    "backlog_events": 72000000.0,
+    "raw_queue_gb": 72.0,
+    "catchup_hours": null,
+    "recovery_headroom_eps": 0.0,
+    "recovery_headroom_available": false,
+    "finite_catchup_possible": false,
+    "scope": "decimal GB; independent non-overlapping hot/additional-cold windows; assumed rates/ratios"
+  },
+  "staffing": {
+    "coverage_fte": 10.5,
+    "workload_fte": 8.92857142857143,
+    "planning_fte_lower_bound": 10.5,
+    "rounded_planning_fte": 11,
+    "weekly_review_hours": 140.0,
+    "scope": "max of coverage and workload, not their sum; mean-load lower bound, not p95 latency or full staffing"
+  },
+  "design_records": {
+    "connected-enterprise": {
+      "status": "documentation_valid",
+      "issues": [],
+      "scope": "record consistency only; declared owners, permissions, timestamps and references are not authenticated"
+    },
+    "contradictory-disconnected": {
+      "status": "needs_review",
+      "issues": [
+        {
+          "code": "external_offline_dependency",
+          "message": "identity"
+        },
+        {
+          "code": "proposal_as_authority",
+          "message": "Declare independent action authorization"
+        },
+        {
+          "code": "fail_open_response",
+          "message": "Unknown authority must not become an allow"
+        },
+        {
+          "code": "unbounded_approval",
+          "message": "High-impact actions need exact scoped expiring approval"
+        },
+        {
+          "code": "stale_as_current",
+          "message": "Reported evidence exceeds the declared current threshold"
+        },
+        {
+          "code": "unverified_as_current",
+          "message": "Declared unverified evidence cannot also be current"
+        },
+        {
+          "code": "declaration_as_assurance",
+          "message": "Placement strings are not environment observation"
+        },
+        {
+          "code": "unsupported_environment_claim",
+          "message": "Provide scoped evidence references for the claimed stage"
+        }
+      ],
+      "scope": "record consistency only; declared owners, permissions, timestamps and references are not authenticated"
+    },
+    "disconnected-site": {
+      "status": "documentation_valid",
+      "issues": [],
+      "scope": "record consistency only; declared owners, permissions, timestamps and references are not authenticated"
+    },
+    "incomplete-mssp": {
+      "status": "needs_review",
+      "issues": [
+        {
+          "code": "missing_owner",
+          "message": "L12"
+        },
+        {
+          "code": "missing_tenant_boundary",
+          "message": "Multi-tenant separation must be documented"
+        }
+      ],
+      "scope": "record consistency only; declared owners, permissions, timestamps and references are not authenticated"
+    }
+  }
+}

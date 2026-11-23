@@ -1,0 +1,63 @@
+{
+  "pattern_id": "P08",
+  "stage": "synthetic design record",
+  "connectivity": "connected",
+  "tenant_count": 4,
+  "proposed_layer_owners": {
+    "L01": "Executive sponsor and SOC service owner",
+    "L02": "Asset owners and security architecture",
+    "L03": "Source-system owners and telemetry engineering",
+    "L04": "Telemetry engineering and site operator",
+    "L05": "Platform and telemetry engineering",
+    "L06": "Data engineering and detection engineering",
+    "L07": "Data platform, privacy and evidence owners",
+    "L08": "Threat intelligence and context owners",
+    "L09": "Detection engineering and domain owners",
+    "L10": "Analytics owners and privacy reviewers",
+    "L11": "SOC operations and case owners",
+    "L13": "Response service owners and business process owners",
+    "L14": "AI platform, SOC and action-authority owners",
+    "L15": "Hunt lead, detection engineering and system owners",
+    "L16": "Incident commander, service owners and legal/privacy advisers",
+    "L17": "IAM, platform and evidence owners",
+    "L18": "Platform engineering and release owners",
+    "L19": "SRE, platform and recovery owners",
+    "L20": "Risk, privacy, jurisdiction and key owners",
+    "L21": "SRE, detection and SOC service owners",
+    "L22": "Platform economics and SOC workforce owners",
+    "L23": "Integration owners and security architecture",
+    "L24": "Control owners and independent reviewers"
+  },
+  "critical_dependencies": [
+    {
+      "name": "cloud identity",
+      "location": "external",
+      "required_offline": false,
+      "local_alternative": null
+    }
+  ],
+  "data_policy": {
+    "tenant_isolation_declared": false,
+    "source_classification": "synthetic confidential",
+    "placement_scope": "declared only"
+  },
+  "response": {
+    "independent_authorization": true,
+    "failure_behavior": "deny",
+    "high_impact_actions": [
+      "isolate_host"
+    ],
+    "exact_expiring_approval": true,
+    "max_actions_per_job": 1
+  },
+  "visibility": {
+    "status": "current",
+    "reported_age_seconds": 30,
+    "current_max_age_seconds": 120,
+    "origin_verified": true
+  },
+  "sovereignty_claim": "declared_requirements",
+  "placement_evidence_kind": "documented",
+  "evidence_claim": "design_only",
+  "environment_evidence_references": []
+}

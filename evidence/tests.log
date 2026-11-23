@@ -1,0 +1,29 @@
+test_declaration_does_not_support_environment_claim (test_design_review.DesignReviewTests.test_declaration_does_not_support_environment_claim) ... ok
+test_disconnected_external_dependency_detected (test_design_review.DesignReviewTests.test_disconnected_external_dependency_detected) ... ok
+test_fail_open_action_handling_rejected (test_design_review.DesignReviewTests.test_fail_open_action_handling_rejected) ... ok
+test_high_impact_actions_need_exact_approval_and_budget (test_design_review.DesignReviewTests.test_high_impact_actions_need_exact_approval_and_budget) ... ok
+test_malformed_freshness_is_not_healthy (test_design_review.DesignReviewTests.test_malformed_freshness_is_not_healthy) ... ok
+test_malformed_nested_records_are_not_healthy (test_design_review.DesignReviewTests.test_malformed_nested_records_are_not_healthy) ... ok
+test_nonobject_record_is_not_accepted_or_crashed (test_design_review.DesignReviewTests.test_nonobject_record_is_not_accepted_or_crashed) ... ok
+test_reference_records_are_documentation_only (test_design_review.DesignReviewTests.test_reference_records_are_documentation_only) ... ok
+test_stale_or_unverified_is_not_current (test_design_review.DesignReviewTests.test_stale_or_unverified_is_not_current) ... ok
+test_tenant_boundary_and_owner_gaps_exposed (test_design_review.DesignReviewTests.test_tenant_boundary_and_owner_gaps_exposed) ... ok
+test_unknown_architecture_not_silently_accepted (test_design_review.DesignReviewTests.test_unknown_architecture_not_silently_accepted) ... ok
+test_untrusted_proposal_cannot_be_declared_authority (test_design_review.DesignReviewTests.test_untrusted_proposal_cannot_be_declared_authority) ... ok
+test_compression_and_integer_copies_bounded (test_planning.PlanningTests.test_compression_and_integer_copies_bounded) ... ok
+test_decimal_ingest_and_nonoverlapping_tiers (test_planning.PlanningTests.test_decimal_ingest_and_nonoverlapping_tiers) ... ok
+test_invalid_staffing_ratios_rejected (test_planning.PlanningTests.test_invalid_staffing_ratios_rejected) ... ok
+test_mean_staffing_uses_max_not_sum (test_planning.PlanningTests.test_mean_staffing_uses_max_not_sum) ... ok
+test_negative_outage_rejected (test_planning.PlanningTests.test_negative_outage_rejected) ... ok
+test_no_headroom_does_not_produce_fake_zero_recovery (test_planning.PlanningTests.test_no_headroom_does_not_produce_fake_zero_recovery) ... ok
+test_nonfinite_and_boolean_inputs_rejected (test_planning.PlanningTests.test_nonfinite_and_boolean_inputs_rejected) ... ok
+test_outage_and_net_drain (test_planning.PlanningTests.test_outage_and_net_drain) ... ok
+test_overloaded_consumer_cannot_clear_backlog (test_planning.PlanningTests.test_overloaded_consumer_cannot_clear_backlog) ... ok
+test_peak_cannot_be_less_than_average (test_planning.PlanningTests.test_peak_cannot_be_less_than_average) ... ok
+test_workload_can_exceed_rota_lower_bound (test_planning.PlanningTests.test_workload_can_exceed_rota_lower_bound) ... ok
+test_zero_backlog_with_zero_margin_still_marks_no_headroom (test_planning.PlanningTests.test_zero_backlog_with_zero_margin_still_marks_no_headroom) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.005s
+
+OK

@@ -1,0 +1,846 @@
+{
+  "reviewed_on": "2026-11-23",
+  "composition_note": "Archetypes can be combined; they do not enumerate every vendor/deployment combination.",
+  "patterns": [
+    {
+      "id": "P01",
+      "slug": "centralized-on-premises",
+      "title": "Centralized on-premises SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "A controlled enterprise estate with local processing and platform ownership.",
+      "topology": "Site collectors feed a local bus and evidence platform; the response gateway reaches registered resources.",
+      "tradeoff": "Local control brings platform, storage, skills, update and recovery obligations.",
+      "priority_layers": [
+        "L04",
+        "L07",
+        "L17",
+        "L19"
+      ],
+      "mermaid": "flowchart LR\n S[Enterprise sources] --> C[Collectors] --> Q[Local durable bus]\n Q --> D[Search and evidence tiers] --> A[Analyst cases]\n A --> G[Independent action gateway] --> T[Registered targets]\n D --> B[Independent backup]",
+      "constraints": [
+        {
+          "id": "P01-C01",
+          "decision": "Separate management, workload and evidence trust zones.",
+          "failure_mode": "A platform compromise reaches targets and erases evidence.",
+          "acceptance_evidence": "Boundary review and denied management-to-target paths."
+        },
+        {
+          "id": "P01-C02",
+          "decision": "Identify shared power, storage, time, identity and license failures.",
+          "failure_mode": "Redundant nodes share an indispensable dependency.",
+          "acceptance_evidence": "Dependency failure exercise and independent recovery options."
+        },
+        {
+          "id": "P01-C03",
+          "decision": "Size local buffers and restoration for a stated outage.",
+          "failure_mode": "Local placement is assumed resilient without tested restoration.",
+          "acceptance_evidence": "Measured backlog/restore trials and declared assumptions."
+        },
+        {
+          "id": "P01-C04",
+          "decision": "Control privileged support and update import paths.",
+          "failure_mode": "Support or media bypasses intended local authority.",
+          "acceptance_evidence": "Support records and failed package-admission cases."
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "slug": "cloud-native-soc",
+      "title": "Cloud-native SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Cloud-heavy services using managed event collection, storage and analytics.",
+      "topology": "Regional subscriptions feed managed queues/data tiers; query and response identities remain separate.",
+      "tradeoff": "Managed operations add region, API, identity, billing and supplier dependencies.",
+      "priority_layers": [
+        "L03",
+        "L05",
+        "L07",
+        "L20"
+      ],
+      "mermaid": "flowchart LR\n S[Cloud and SaaS sources] --> C[Scoped subscriptions]\n C --> Q[Regional ingest] --> D[Regional evidence]\n D --> A[Detection and cases] --> G[Scoped response] --> T[Approved resources]\n I[Identity and provider dependencies] -.-> Q\n I -.-> G",
+      "constraints": [
+        {
+          "id": "P02-C01",
+          "decision": "Verify log enablement, delivery paths and provider API limits.",
+          "failure_mode": "A cloud account exists while required logs are absent.",
+          "acceptance_evidence": "Permission checks and throttling/delivery-failure cases."
+        },
+        {
+          "id": "P02-C02",
+          "decision": "Define storage, query, support and recovery placement independently.",
+          "failure_mode": "A regional bucket masks foreign processing or administration.",
+          "acceptance_evidence": "Declared versus observed placement and supplier review."
+        },
+        {
+          "id": "P02-C03",
+          "decision": "Include billing, licensing and account suspension in continuity.",
+          "failure_mode": "Budget or account state stops collection or investigation.",
+          "acceptance_evidence": "Operating dependency review and degraded-mode decisions."
+        },
+        {
+          "id": "P02-C04",
+          "decision": "Separate evidence access from cloud containment permissions.",
+          "failure_mode": "Query access grants broad resource mutation.",
+          "acceptance_evidence": "Least-authority grants and foreign-resource denials."
+        }
+      ]
+    },
+    {
+      "id": "P03",
+      "slug": "hybrid-multi-cloud",
+      "title": "Hybrid and multi-cloud SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Services spanning on-premises, several clouds and SaaS.",
+      "topology": "Collectors join a governed fabric; shared cases retain original identity and provenance.",
+      "tradeoff": "Coordination simplifies while identity, egress, queries and time semantics remain heterogeneous.",
+      "priority_layers": [
+        "L02",
+        "L06",
+        "L17",
+        "L23"
+      ],
+      "mermaid": "flowchart LR\n O[On-prem collector] --> Q[Governed fabric]\n C1[Cloud A collector] --> Q\n C2[Cloud B collector] --> Q\n Q --> D[Authorized query and evidence] --> A[Cases]\n A --> G[Per-domain action policy]\n G --> T1[On-prem targets]\n G --> T2[Cloud A targets]\n G --> T3[Cloud B targets]",
+      "constraints": [
+        {
+          "id": "P03-C01",
+          "decision": "Preserve provider/tenant-qualified identity through joins.",
+          "failure_mode": "Equivalent names merge unrelated principals.",
+          "acceptance_evidence": "Cross-provider collision and scope cases."
+        },
+        {
+          "id": "P03-C02",
+          "decision": "Decide where raw data remains and what crosses domains.",
+          "failure_mode": "Centralization creates undocumented export.",
+          "acceptance_evidence": "Approved flow register and disclosure controls."
+        },
+        {
+          "id": "P03-C03",
+          "decision": "Test normalization and queries per provider/backend.",
+          "failure_mode": "One dashboard hides divergent meanings and missing data.",
+          "acceptance_evidence": "Backend-specific detection observations."
+        },
+        {
+          "id": "P03-C04",
+          "decision": "Maintain separate action grants and failure modes per domain.",
+          "failure_mode": "Central services inherit every administrator role.",
+          "acceptance_evidence": "Domain-specific allowed/denied and outage cases."
+        }
+      ]
+    },
+    {
+      "id": "P04",
+      "slug": "security-data-lakehouse",
+      "title": "Security data lakehouse",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "High-volume retention with multiple analytics consumers.",
+      "topology": "Raw/normalized tiers serve governed query engines, detections and cases independently of action authority.",
+      "tradeoff": "Flexible analytics adds catalog, authorization, cost and lifecycle complexity.",
+      "priority_layers": [
+        "L06",
+        "L07",
+        "L22",
+        "L23"
+      ],
+      "mermaid": "flowchart LR\n S[Sources] --> N[Normalize with lineage] --> R[Raw and normalized tiers]\n R --> C[Governed catalog and queries]\n C --> D[Detection consumers]\n C --> A[Investigation consumers]\n D --> K[Cases] --> G[Independent response policy]",
+      "constraints": [
+        {
+          "id": "P04-C01",
+          "decision": "Enforce authorization below each query/export engine.",
+          "failure_mode": "Consumers bypass SIEM-level filters.",
+          "acceptance_evidence": "Direct storage/query/export denial cases."
+        },
+        {
+          "id": "P04-C02",
+          "decision": "Handle late events, reprocessing and tier-specific lifecycle.",
+          "failure_mode": "Late evidence is missed or deleted prematurely.",
+          "acceptance_evidence": "Backfill/reprocess/retention cases with lineage."
+        },
+        {
+          "id": "P04-C03",
+          "decision": "Model duplicate tiers, indexes and query concurrency.",
+          "failure_mode": "Cheap storage is presented as cheap complete analytics.",
+          "acceptance_evidence": "Unit assumptions and representative query measurements."
+        },
+        {
+          "id": "P04-C04",
+          "decision": "Preserve data and interpretation metadata for exit.",
+          "failure_mode": "Export loses schema, provenance or time meaning.",
+          "acceptance_evidence": "Alternative-engine import and paired detection cases."
+        }
+      ]
+    },
+    {
+      "id": "P05",
+      "slug": "composable-platform",
+      "title": "Composable SOC platform",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Teams owning modular collectors, queues, analytics, case and response components.",
+      "topology": "Components exchange versioned data, identity and authority contracts.",
+      "tradeoff": "Flexibility requires integration, patch, support and recovery ownership.",
+      "priority_layers": [
+        "L05",
+        "L18",
+        "L23",
+        "L24"
+      ],
+      "mermaid": "flowchart LR\n C[Collectors] --> Q[Event bus] --> D[Evidence platform]\n D --> E[Detection engine] --> K[Case platform]\n K --> G[Response gateway] --> T[Registered tools]\n V[Versioned contracts] -.-> Q\n V -.-> K\n V -.-> G",
+      "constraints": [
+        {
+          "id": "P05-C01",
+          "decision": "Own every component and interface lifecycle.",
+          "failure_mode": "Modularity is assumed to be operationally free.",
+          "acceptance_evidence": "Ownership register and patch/recovery plan."
+        },
+        {
+          "id": "P05-C02",
+          "decision": "Validate identity, schema, retries and time semantics at interfaces.",
+          "failure_mode": "Successful transport is mistaken for interoperability.",
+          "acceptance_evidence": "Contract and negative cases per component pair."
+        },
+        {
+          "id": "P05-C03",
+          "decision": "Control plugin admission and privileged automation.",
+          "failure_mode": "Convenient integrations gain unreviewed execution rights.",
+          "acceptance_evidence": "Admission and permission-change review."
+        },
+        {
+          "id": "P05-C04",
+          "decision": "Observe end-to-end behavior and failure propagation.",
+          "failure_mode": "Healthy individual tools leave a broken workflow.",
+          "acceptance_evidence": "Source-to-case/action and induced interface failures."
+        }
+      ]
+    },
+    {
+      "id": "P06",
+      "slug": "xdr-led-soc",
+      "title": "XDR-led SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "An estate relying heavily on provider-native endpoint, identity or network analytics.",
+      "topology": "XDR evidence joins non-native sources and an enterprise case/decision layer.",
+      "tradeoff": "Quick integration can coexist with proprietary logic and raw-evidence limits.",
+      "priority_layers": [
+        "L03",
+        "L09",
+        "L11",
+        "L23"
+      ],
+      "mermaid": "flowchart LR\n E[Provider-native sources] --> X[XDR platform]\n N[Non-native sources] --> Q[Additional event path]\n X --> K[Enterprise cases]\n Q --> K\n K --> G[Independent policy] --> T[Targets]",
+      "constraints": [
+        {
+          "id": "P06-C01",
+          "decision": "Identify required sources beyond native sensors.",
+          "failure_mode": "Provider coverage is presented as whole-enterprise coverage.",
+          "acceptance_evidence": "Non-native source inventory and missing-source cases."
+        },
+        {
+          "id": "P06-C02",
+          "decision": "Separate documented analytics from tested outcomes.",
+          "failure_mode": "Technique lists are treated as demonstrated protection.",
+          "acceptance_evidence": "Positive/benign/missed cases and opaque internals."
+        },
+        {
+          "id": "P06-C03",
+          "decision": "Keep export and alternative investigation usable.",
+          "failure_mode": "Supplier failure makes original evidence unavailable.",
+          "acceptance_evidence": "Raw/case export and alternative-query exercise."
+        },
+        {
+          "id": "P06-C04",
+          "decision": "Retain enterprise approval for consequential response.",
+          "failure_mode": "Provider recommendations authorize business disruption.",
+          "acceptance_evidence": "Exact resource approvals and denied unapproved containment."
+        }
+      ]
+    },
+    {
+      "id": "P07",
+      "slug": "mdr-and-shared-responsibility",
+      "title": "MDR and shared-responsibility SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Outsourced monitoring with retained enterprise risk and action ownership.",
+      "topology": "Provider cases reach enterprise decision owners; selected evidence remains independently retained.",
+      "tradeoff": "Coverage and skills add access, contract, handover and supplier concentration obligations.",
+      "priority_layers": [
+        "L01",
+        "L12",
+        "L13",
+        "L20"
+      ],
+      "mermaid": "flowchart LR\n S[Approved sources] --> M[MDR service]\n M --> K[Shared cases] --> O[Enterprise owner]\n O --> G[Scoped response] --> T[Enterprise targets]\n S --> E[Retained enterprise evidence]",
+      "constraints": [
+        {
+          "id": "P07-C01",
+          "decision": "Agree coverage, response rights, escalation and retained duties.",
+          "failure_mode": "An MDR contract implies a complete enterprise mandate.",
+          "acceptance_evidence": "RACI, commitments and joint handover exercise."
+        },
+        {
+          "id": "P07-C02",
+          "decision": "Limit supplier permissions by resource, tenant and purpose.",
+          "failure_mode": "Convenience grants unrestricted administration.",
+          "acceptance_evidence": "Access review and foreign-resource denials."
+        },
+        {
+          "id": "P07-C03",
+          "decision": "Maintain evidence, continuity and exit rights.",
+          "failure_mode": "Supplier failure removes monitoring and investigation.",
+          "acceptance_evidence": "Retained data and alternate-operating procedure."
+        },
+        {
+          "id": "P07-C04",
+          "decision": "Validate joint command and notification responsibility.",
+          "failure_mode": "Supplier and enterprise act inconsistently or leave obligations unowned.",
+          "acceptance_evidence": "Joint exercise with responsible legal/service owners."
+        }
+      ]
+    },
+    {
+      "id": "P08",
+      "slug": "mssp-multi-tenant",
+      "title": "MSSP multi-tenant SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "A provider serving separately authorized customers.",
+      "topology": "Tenant-qualified ingest, storage, cases, quotas and grants share selected infrastructure.",
+      "tradeoff": "Shared efficiency increases isolation, admin and noisy-neighbor risks.",
+      "priority_layers": [
+        "L05",
+        "L07",
+        "L13",
+        "L17"
+      ],
+      "mermaid": "flowchart LR\n A[Tenant A sources] --> IA[Tenant A ingest]\n B[Tenant B sources] --> IB[Tenant B ingest]\n IA --> DA[Tenant A evidence and cases] --> GA[Tenant A grants]\n IB --> DB[Tenant B evidence and cases] --> GB[Tenant B grants]\n P[Shared platform administration] -.-> DA\n P -.-> DB",
+      "constraints": [
+        {
+          "id": "P08-C01",
+          "decision": "Enforce tenant isolation below consoles, caches, queues and stores.",
+          "failure_mode": "UI labels are the only separation.",
+          "acceptance_evidence": "Cross-tenant read/write/cache/export denials."
+        },
+        {
+          "id": "P08-C02",
+          "decision": "Separate customer keys, grants and approval owners.",
+          "failure_mode": "Shared approval acts across unrelated customers.",
+          "acceptance_evidence": "Key/grant custody and mismatched-tenant denial."
+        },
+        {
+          "id": "P08-C03",
+          "decision": "Protect per-tenant capacity and expose visibility loss.",
+          "failure_mode": "One tenant exhausts shared capacity or hides dropped evidence.",
+          "acceptance_evidence": "Burst/isolation tests and tenant loss accounting."
+        },
+        {
+          "id": "P08-C04",
+          "decision": "Authorize analyst assignment and supplier support per customer.",
+          "failure_mode": "Global staffing automatically inherits all tenant rights.",
+          "acceptance_evidence": "Assignment, expiry and controlled case-sharing checks."
+        }
+      ]
+    },
+    {
+      "id": "P09",
+      "slug": "federated-national-and-regional",
+      "title": "Federated national and regional SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Accountable agencies/regions retaining local data and decisions.",
+      "topology": "Regional SOCs retain evidence and actions; central coordination receives approved freshness-aware summaries.",
+      "tradeoff": "Distributed authority makes common policy, stale evidence and joint command explicit concerns.",
+      "priority_layers": [
+        "L04",
+        "L16",
+        "L20",
+        "L21"
+      ],
+      "mermaid": "flowchart LR\n S1[Regional sources] --> R1[Regional SOC and authority]\n S2[Other sources] --> R2[Other regional SOC]\n R1 --> E1[Approved export]\n R2 --> E2[Approved export]\n E1 --> C[Central coordination and freshness]\n E2 --> C\n C --> P[Reviewed packages] --> A[Local admission owners]",
+      "constraints": [
+        {
+          "id": "P09-C01",
+          "decision": "Separate central coordination from local authority and custody.",
+          "failure_mode": "Central systems assume unrestricted access or command.",
+          "acceptance_evidence": "Federation authority matrix and denied central actions."
+        },
+        {
+          "id": "P09-C02",
+          "decision": "Carry freshness, uncertainty and disclosure constraints in export.",
+          "failure_mode": "Silent sites are reported as currently protected.",
+          "acceptance_evidence": "Aged/missing reports and prohibited disclosure cases."
+        },
+        {
+          "id": "P09-C03",
+          "decision": "Admit shared content locally with target/version checks.",
+          "failure_mode": "A compromised coordinator pushes stale or executable authority.",
+          "acceptance_evidence": "Wrong-target/signer and replay/rollback admission cases."
+        },
+        {
+          "id": "P09-C04",
+          "decision": "Exercise multi-owner command under connectivity loss.",
+          "failure_mode": "Ambiguity prevents accountable local response.",
+          "acceptance_evidence": "Regional/central exercise and independent local decisions."
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "slug": "sovereign-connected-soc",
+      "title": "Sovereign connected SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Explicit jurisdiction, operator, key and supplier boundaries with connectivity.",
+      "topology": "Approved local processing and keys use governed external feeds, support and exports.",
+      "tradeoff": "Connectivity must not obscure external authority and disclosure obligations.",
+      "priority_layers": [
+        "L17",
+        "L19",
+        "L20",
+        "L24"
+      ],
+      "mermaid": "flowchart LR\n S[Scoped sources] --> L[Approved local processing]\n K[Independent key custody] -.-> L\n L --> A[Local cases and owners] --> G[Local response]\n L --> E[Approved export]\n U[Approved ingress] --> V[Local verification] --> L",
+      "constraints": [
+        {
+          "id": "P10-C01",
+          "decision": "Define data, administrator, key, support, supplier and recovery authority separately.",
+          "failure_mode": "Location is reported as proven sovereignty.",
+          "acceptance_evidence": "Declaration/observation/contract boundary register."
+        },
+        {
+          "id": "P10-C02",
+          "decision": "Constrain feeds, support and exits by purpose and recipient.",
+          "failure_mode": "Support or analytics creates uncontrolled disclosure.",
+          "acceptance_evidence": "Permitted/denied transfer and support cases."
+        },
+        {
+          "id": "P10-C03",
+          "decision": "Restore within the required authority and placement scope.",
+          "failure_mode": "Recovery relies on unapproved foreign operators or copies.",
+          "acceptance_evidence": "Scoped restore and independently reviewed placement."
+        },
+        {
+          "id": "P10-C04",
+          "decision": "Separate connectivity from sovereignty assurance.",
+          "failure_mode": "Disconnection is assumed to establish sovereignty.",
+          "acceptance_evidence": "Independent connectivity and authority acceptance records."
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "slug": "strictly-disconnected-soc",
+      "title": "Strictly disconnected SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Local monitoring and response requiring no routine external connectivity.",
+      "topology": "Local collection, identity, time, keys, analytics and response operate within the site; approved media/transfer procedures admit updates or export evidence.",
+      "tradeoff": "Local autonomy brings local lifecycle, intelligence age, admission, staffing and recovery burdens.",
+      "priority_layers": [
+        "L04",
+        "L17",
+        "L18",
+        "L19"
+      ],
+      "mermaid": "flowchart LR\n S[Local sources] --> C[Local collectors] --> D[Local evidence and detections]\n I[Local identity and time] -.-> D\n D --> A[Local cases and owners] --> G[Local response]\n U[Approved offline packages] --> V[Quarantine and local admission] --> D\n A --> E[Approved offline evidence export]",
+      "constraints": [
+        {
+          "id": "P11-C01",
+          "decision": "Remove or provide local alternatives for critical external runtime dependencies.",
+          "failure_mode": "Cloud identity, DNS, time, licensing or certificate checks stop local operations.",
+          "acceptance_evidence": "Disconnected dependency inventory and measured unavailable-service cases."
+        },
+        {
+          "id": "P11-C02",
+          "decision": "Verify physical transfer, content integrity and approval as separate controls.",
+          "failure_mode": "A signed package is assumed safe or an air-gap diagram is assumed enforced.",
+          "acceptance_evidence": "Media custody, artifact/target checks and independently reviewed transfer enforcement."
+        },
+        {
+          "id": "P11-C03",
+          "decision": "Operate local freshness, revocation and emergency authority deliberately.",
+          "failure_mode": "Stale grants or intelligence create unbounded local permissions.",
+          "acceptance_evidence": "Age/expiry/revocation exercises and retained decision owners."
+        },
+        {
+          "id": "P11-C04",
+          "decision": "Maintain local restoration and tested clean recovery.",
+          "failure_mode": "Evidence and keys require unreachable central services.",
+          "acceptance_evidence": "Clean-target restore with measured loss and remaining dependencies."
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "slug": "intermittent-edge-and-remote-sites",
+      "title": "Intermittent edge and remote-site SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Remote sites that temporarily lose central connectivity.",
+      "topology": "Local queues and permitted analysis/response remain available; resynchronization exports bounded data with freshness and deduplication.",
+      "tradeoff": "Continuity depends on outage assumptions, local authority and safe reconciliation.",
+      "priority_layers": [
+        "L04",
+        "L05",
+        "L13",
+        "L21"
+      ],
+      "mermaid": "flowchart LR\n S[Remote sources] --> B[Local durable buffer] --> L[Local permitted analysis]\n L --> O[Local decision owner] --> G[Local scoped response]\n B --> X[Controlled reconnect and deduplication] --> C[Central SOC]\n C --> R[Reviewed updates] --> A[Local admission]",
+      "constraints": [
+        {
+          "id": "P12-C01",
+          "decision": "Size durable buffers against explicit outage and burst assumptions.",
+          "failure_mode": "Unmodeled outages cause silent loss or unsafe full-disk behavior.",
+          "acceptance_evidence": "Restart/full-buffer trials and overflow/loss policy."
+        },
+        {
+          "id": "P12-C02",
+          "decision": "Bound local actions independently of central availability.",
+          "failure_mode": "Lost connectivity grants unrestricted emergency response.",
+          "acceptance_evidence": "Local grant/expiry and denied escalation cases."
+        },
+        {
+          "id": "P12-C03",
+          "decision": "Report delayed, missing or unverified site evidence centrally.",
+          "failure_mode": "Last received telemetry is displayed as current.",
+          "acceptance_evidence": "Report-aging cases and clear visibility status."
+        },
+        {
+          "id": "P12-C04",
+          "decision": "Reconcile duplicate events, cases, updates and action receipts on reconnect.",
+          "failure_mode": "Repeated data or stale approvals duplicate actions.",
+          "acceptance_evidence": "Resynchronization and authority-state replay tests."
+        }
+      ]
+    },
+    {
+      "id": "P13",
+      "slug": "ot-and-industrial-soc",
+      "title": "OT and industrial SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Industrial operations with process safety, legacy equipment and strict change windows.",
+      "topology": "Approved passive sensors feed an OT evidence zone; process owners govern maintenance and containment decisions.",
+      "tradeoff": "Better visibility must respect safety, availability, protocol limits and engineering authority.",
+      "priority_layers": [
+        "L03",
+        "L15",
+        "L16",
+        "L20"
+      ],
+      "mermaid": "flowchart LR\n P[Industrial processes] --> S[Approved passive sensors] --> Z[OT evidence zone]\n Z --> A[OT analyst cases] --> O[Process and safety owners]\n O --> M[Approved maintenance boundary]\n I[IT evidence] --> E[Controlled IT and OT correlation] --> A",
+      "constraints": [
+        {
+          "id": "P13-C01",
+          "decision": "Approve passive/active collection and testing with process owners.",
+          "failure_mode": "Security scans or sensor changes disrupt operations.",
+          "acceptance_evidence": "Safety review, approved method and bounded operating window."
+        },
+        {
+          "id": "P13-C02",
+          "decision": "Separate OT and IT control/identity domains and permitted correlation.",
+          "failure_mode": "IT compromise gains engineering command authority.",
+          "acceptance_evidence": "Zone/action matrix and denied cross-domain commands."
+        },
+        {
+          "id": "P13-C03",
+          "decision": "Keep containment under engineering/safety authority.",
+          "failure_mode": "Automatic isolation harms physical processes.",
+          "acceptance_evidence": "Consequential-action approval and safe alternate-response exercise."
+        },
+        {
+          "id": "P13-C04",
+          "decision": "Plan local maintenance, updates and recovery for legacy dependencies.",
+          "failure_mode": "Unsupported or externally dependent tooling breaks remote-site operation.",
+          "acceptance_evidence": "Lifecycle dependency and locally recoverable operating plan."
+        }
+      ]
+    },
+    {
+      "id": "P14",
+      "slug": "ai-assisted-human-led-soc",
+      "title": "AI-assisted human-led SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Teams using AI for evidence summaries, query assistance and investigation support.",
+      "topology": "Authorized context reaches a bounded assistant; analysts accept conclusions and independently authorized tools execute permitted actions.",
+      "tradeoff": "Assistance adds instruction, retrieval, provider, model-update and confidence risks.",
+      "priority_layers": [
+        "L10",
+        "L11",
+        "L13",
+        "L14"
+      ],
+      "mermaid": "flowchart LR\n E[Untrusted evidence] --> R[Permission-filtered retrieval] --> A[Bounded assistant]\n A --> P[Evidence-linked proposal] --> H[Analyst decision]\n H --> G[Independent action policy] --> T[Registered tools]\n C[Trusted subject and grants] -.-> R\n C -.-> G",
+      "constraints": [
+        {
+          "id": "P14-C01",
+          "decision": "Authorize retrieval before data enters model context.",
+          "failure_mode": "An unauthorized document is exposed before redaction.",
+          "acceptance_evidence": "Mixed-tenant/field retrieval and legitimate-context controls."
+        },
+        {
+          "id": "P14-C02",
+          "decision": "Keep evidence text and model output outside the authority path.",
+          "failure_mode": "Prompt injection or fabricated approval grants a tool action.",
+          "acceptance_evidence": "Instruction/approval-forgery cases and independent tool decisions."
+        },
+        {
+          "id": "P14-C03",
+          "decision": "Review provider data, placement, retention and fallback.",
+          "failure_mode": "A helpful summary sends confidential evidence to an unapproved service.",
+          "acceptance_evidence": "Allowed/denied provider routes and unavailable-model behavior."
+        },
+        {
+          "id": "P14-C04",
+          "decision": "Evaluate outputs and admit changes with known limits.",
+          "failure_mode": "An impressive demo becomes an assurance claim about real-model quality.",
+          "acceptance_evidence": "Task-specific factuality/usefulness tests, uncertainty and versioned re-evaluation."
+        }
+      ]
+    },
+    {
+      "id": "P15",
+      "slug": "bounded-closed-loop-automation",
+      "title": "Bounded closed-loop automation",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Low-impact or tightly governed repeatable actions with measurable permitted outcomes.",
+      "topology": "Eligible events propose actions; independent policy applies scope, budget, approval and idempotency before dispatch and verification.",
+      "tradeoff": "Speed increases the cost of policy mistakes, stale inputs, duplicated execution and partial failures.",
+      "priority_layers": [
+        "L09",
+        "L13",
+        "L17",
+        "L21"
+      ],
+      "mermaid": "flowchart LR\n D[Eligible detection] --> P[Action proposal] --> G[Policy and approval gateway]\n G --> Q[Bounded idempotent dispatch] --> T[Registered target]\n T --> V[Independent outcome observation] --> K[Case record]\n S[Independent stop and budget control] -.-> G",
+      "constraints": [
+        {
+          "id": "P15-C01",
+          "decision": "Limit eligible actions, resources, rate and blast radius.",
+          "failure_mode": "One noisy or compromised detection disrupts an entire estate.",
+          "acceptance_evidence": "Wrong-resource and over-budget negative cases."
+        },
+        {
+          "id": "P15-C02",
+          "decision": "Require exact approvals and fresh independent context for high-impact actions.",
+          "failure_mode": "Automation bypasses business authority.",
+          "acceptance_evidence": "Expired/mismatched/replayed approval cases."
+        },
+        {
+          "id": "P15-C03",
+          "decision": "Observe real target state and retain partial or failed outcomes.",
+          "failure_mode": "Success messages are treated as verified containment.",
+          "acceptance_evidence": "Independent state check and interrupted/partial-effect evidence."
+        },
+        {
+          "id": "P15-C04",
+          "decision": "Test retry, stop and compensation with explicit irreversibility.",
+          "failure_mode": "Rollback promises exceed what an action can reverse.",
+          "acceptance_evidence": "Duplicate/interrupted action trials and owned residual decisions."
+        }
+      ]
+    },
+    {
+      "id": "P16",
+      "slug": "follow-the-sun-global",
+      "title": "Follow-the-sun global SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Distributed analyst teams sharing approved workload across time zones.",
+      "topology": "Region/tenant-scoped queues and evidence support a documented handover with authority expiry and accepted ownership.",
+      "tradeoff": "Coverage depends on lawful access, staffing, fatigue, context continuity and actual acknowledgement.",
+      "priority_layers": [
+        "L01",
+        "L11",
+        "L12",
+        "L22"
+      ],
+      "mermaid": "flowchart LR\n R1[Region A sources] --> Q[Region and tenant scoped queues]\n R2[Region B sources] --> Q\n Q --> A[Shift A analysts] --> H[Accepted evidence and authority handover]\n H --> B[Shift B analysts]\n B --> G[Region-specific action grants]",
+      "constraints": [
+        {
+          "id": "P16-C01",
+          "decision": "Authorize staffing assignments and data access per region and customer.",
+          "failure_mode": "Global coverage becomes unrestricted cross-border evidence access.",
+          "acceptance_evidence": "Assignment/access review and denied foreign-scope cases."
+        },
+        {
+          "id": "P16-C02",
+          "decision": "Transfer ownership, evidence status and pending approvals explicitly.",
+          "failure_mode": "A case is sent but not accepted by the next shift.",
+          "acceptance_evidence": "Acknowledged handover with unresolved decisions and timers."
+        },
+        {
+          "id": "P16-C03",
+          "decision": "Model workload, leave, specialist availability and surge capacity.",
+          "failure_mode": "Nominal time-zone coverage is treated as adequate incident capacity.",
+          "acceptance_evidence": "Rota and workload model followed by observed shift performance."
+        },
+        {
+          "id": "P16-C04",
+          "decision": "Expire grants and reconcile concurrent shift actions.",
+          "failure_mode": "Old and new shifts both act using stale approval.",
+          "acceptance_evidence": "Expiry, duplicate-action and ownership-switch cases."
+        }
+      ]
+    },
+    {
+      "id": "P17",
+      "slug": "regulated-high-assurance",
+      "title": "Regulated and high-assurance SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Services requiring strong traceability, constrained privileges and independently reviewable evidence.",
+      "topology": "Separated collection, analysis, evidence custody, key ownership and action approval support a scoped assurance process.",
+      "tradeoff": "Higher assurance increases evidence, operational separation and change-management effort.",
+      "priority_layers": [
+        "L12",
+        "L17",
+        "L20",
+        "L24"
+      ],
+      "mermaid": "flowchart LR\n S[Scoped regulated sources] --> I[Controlled ingest] --> D[Protected evidence]\n D --> A[Authorized investigation] --> P[Independent approval]\n P --> G[Scoped action gateway]\n K[Separate key custodian] -.-> D\n R[Independent reviewer] -.-> D",
+      "constraints": [
+        {
+          "id": "P17-C01",
+          "decision": "Establish applicable entity/sector/jurisdiction obligations before mapping.",
+          "failure_mode": "A generic standards crosswalk is called certified compliance.",
+          "acceptance_evidence": "Owner-reviewed applicability and source/version record."
+        },
+        {
+          "id": "P17-C02",
+          "decision": "Separate evidence custody, key ownership, approval and routine operations.",
+          "failure_mode": "One administrator can act and erase accountability.",
+          "acceptance_evidence": "Duty separation and privileged-operation observations."
+        },
+        {
+          "id": "P17-C03",
+          "decision": "Document custody, uncertainty and completeness limitations.",
+          "failure_mode": "Hashes are claimed to prove trustworthy time or complete evidence.",
+          "acceptance_evidence": "Tamper/gap/time tests and independent anchoring gaps."
+        },
+        {
+          "id": "P17-C04",
+          "decision": "Admit changes and exceptions through owned evidence gates.",
+          "failure_mode": "Urgency creates indefinite unreviewed bypasses.",
+          "acceptance_evidence": "Change/exception expiry and reviewer acceptance."
+        }
+      ]
+    },
+    {
+      "id": "P18",
+      "slug": "multi-region-recovery",
+      "title": "Multi-region recovery SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Services needing defined continuity across permitted regional failure domains.",
+      "topology": "Regional collection/data/case services replicate within approved boundaries; response authority and failback ownership are separately controlled.",
+      "tradeoff": "Availability can conflict with placement, authority, replication cost and consistent action state.",
+      "priority_layers": [
+        "L05",
+        "L13",
+        "L19",
+        "L20"
+      ],
+      "mermaid": "flowchart LR\n S[Sources] --> A[Region A ingest and evidence]\n S --> B[Region B permitted ingest]\n A --> R[Approved replication and backup]\n R --> B\n A --> C[Case authority]\n B --> F[Controlled failover owner]\n C --> G[Action-state and approval reconciliation]\n F --> G",
+      "constraints": [
+        {
+          "id": "P18-C01",
+          "decision": "Choose regions, dependencies and quorum within allowed boundaries.",
+          "failure_mode": "Redundancy violates placement or still shares one critical dependency.",
+          "acceptance_evidence": "Failure-domain and authority/placement review."
+        },
+        {
+          "id": "P18-C02",
+          "decision": "Define partition behavior and freshness-sensitive response.",
+          "failure_mode": "A region acts on stale context or creates split-brain decisions.",
+          "acceptance_evidence": "Partition exercise and explicit degraded action modes."
+        },
+        {
+          "id": "P18-C03",
+          "decision": "Restore evidence and authorization/action state together.",
+          "failure_mode": "Recovered approvals permit stale or repeated actions.",
+          "acceptance_evidence": "RPO/RTO measurement and replay-state restoration cases."
+        },
+        {
+          "id": "P18-C04",
+          "decision": "Verify failback, duplicate handling and owned reconciliation.",
+          "failure_mode": "Returning regions overwrite cases or repeat containment.",
+          "acceptance_evidence": "Failure/failback exercise with observed records and residual gaps."
+        }
+      ]
+    },
+    {
+      "id": "P19",
+      "slug": "serverless-elastic",
+      "title": "Serverless and elastic SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "Bursty workloads where managed event, query and workflow services are suitable.",
+      "topology": "Event triggers route to durable evidence and bounded analytics/workflows; independent authority checks precede response.",
+      "tradeoff": "Elasticity remains constrained by quotas, cold starts, API rates, state and cost.",
+      "priority_layers": [
+        "L05",
+        "L13",
+        "L19",
+        "L22"
+      ],
+      "mermaid": "flowchart LR\n S[Events] --> Q[Durable event queue] --> F[Bounded functions]\n F --> D[Evidence and query services]\n F --> K[Cases and workflows]\n K --> G[Independent response policy] --> T[Registered targets]\n B[Quota and cost controls] -.-> F",
+      "constraints": [
+        {
+          "id": "P19-C01",
+          "decision": "Model throttling, cold start, concurrency and finite retries.",
+          "failure_mode": "Elastic services are assumed to have unlimited timely capacity.",
+          "acceptance_evidence": "Burst/throttle/retry measurements and backlog ownership."
+        },
+        {
+          "id": "P19-C02",
+          "decision": "Use durable checkpoints and idempotency for repeated events.",
+          "failure_mode": "Short-lived workers duplicate cases or actions.",
+          "acceptance_evidence": "Worker interruption/replay and partial-effect cases."
+        },
+        {
+          "id": "P19-C03",
+          "decision": "Scope function identities and protect configuration admission.",
+          "failure_mode": "An event function acquires broad query and response privileges.",
+          "acceptance_evidence": "Per-function grants and untrusted-change cases."
+        },
+        {
+          "id": "P19-C04",
+          "decision": "Bound query, execution, egress and model spend.",
+          "failure_mode": "A hostile source creates a financially unbounded workflow.",
+          "acceptance_evidence": "Cost/rate budgets and overload/degraded behavior."
+        }
+      ]
+    },
+    {
+      "id": "P20",
+      "slug": "small-team-resource-constrained",
+      "title": "Small-team and resource-constrained SOC",
+      "stage": "reference architecture; not a tested deployment",
+      "fit": "An organization prioritizing essential visibility and accountable response within explicit staffing limits.",
+      "topology": "A small governed source set feeds managed/composable analysis, a case queue and retained decision owners with clearly defined coverage.",
+      "tradeoff": "Focus and outsourcing can help but do not create unstaffed coverage or universal detection.",
+      "priority_layers": [
+        "L01",
+        "L03",
+        "L11",
+        "L22"
+      ],
+      "mermaid": "flowchart LR\n S[Prioritized critical sources] --> D[Selected analysis service]\n D --> K[Owned review queue] --> O[Named response owner]\n O --> G[Limited approved actions]\n M[Optional scoped MDR support] --> K",
+      "constraints": [
+        {
+          "id": "P20-C01",
+          "decision": "Prioritize critical sources and disclose excluded visibility.",
+          "failure_mode": "A compact toolset is marketed as complete enterprise coverage.",
+          "acceptance_evidence": "Business-priority/source map with exclusions and gaps."
+        },
+        {
+          "id": "P20-C02",
+          "decision": "State collection, staffed and on-call hours separately.",
+          "failure_mode": "An unattended queue is represented as round-the-clock response.",
+          "acceptance_evidence": "Actual coverage and escalation exercise."
+        },
+        {
+          "id": "P20-C03",
+          "decision": "Bound automation to accepted low-impact scopes and clear approvals.",
+          "failure_mode": "Scarce staffing is compensated by unsafe broad automatic actions.",
+          "acceptance_evidence": "Allow/deny/budget and consequential-action approval cases."
+        },
+        {
+          "id": "P20-C04",
+          "decision": "Fund lifecycle, recovery and specialist support as well as platform subscriptions.",
+          "failure_mode": "Low license cost hides unsustainable operating requirements.",
+          "acceptance_evidence": "Cost/workforce assumptions and retained supplier responsibilities."
+        }
+      ]
+    }
+  ]
+}

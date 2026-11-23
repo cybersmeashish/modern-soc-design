@@ -1,0 +1,29 @@
+{
+  "executed_at": "2026-11-23T15:06:26.127261+00:00",
+  "runtime": {
+    "python": "3.12.16",
+    "system": "Linux",
+    "machine": "aarch64"
+  },
+  "layers": 24,
+  "patterns": 20,
+  "constraint_records": 224,
+  "unique_regression_tests": 24,
+  "manifest_files": 95,
+  "primary_sources_retrieved": 14,
+  "isolation": {
+    "requested": true,
+    "probe": "blocked",
+    "errno": 101,
+    "exception": "OSError",
+    "interfaces": [
+      "lo"
+    ],
+    "default_ipv4_route": false,
+    "root_read_only": true,
+    "workspace_read_only": true,
+    "uid": 1000
+  },
+  "scope": "actual planning arithmetic and static-record checks only; no SOC deployment, operational workload or learned-model evaluation",
+  "local_document_links_checked": 323
+}

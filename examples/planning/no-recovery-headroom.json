@@ -1,0 +1,13 @@
+{
+  "average_eps": 1000,
+  "peak_eps": 5000,
+  "event_bytes": 1000,
+  "hot_days": 30,
+  "additional_cold_days": 335,
+  "stored_to_raw_ratio": 0.35,
+  "hot_copies": 2,
+  "cold_copies": 1,
+  "hot_index_overhead_ratio": 0.3,
+  "outage_hours": 4,
+  "processing_eps": 1000
+}

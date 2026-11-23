@@ -1,0 +1,154 @@
+[
+  {
+    "id": "nist-csf",
+    "url": "https://www.nist.gov/cyberframework",
+    "resolved_url": "https://www.nist.gov/cyberframework",
+    "status": 200,
+    "sha256": "9d17c7c34406b00f70595dc000bbfc42c2f2bc23be430e595f929a7556dca35f",
+    "bytes": 89460,
+    "title": "Cybersecurity Framework | NIST",
+    "retrieved_at": "2026-11-23T14:36:25.354091+00:00"
+  },
+  {
+    "id": "nist-ir",
+    "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+    "resolved_url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+    "status": 200,
+    "sha256": "5e4aa0efeced1bac2361a82a763830ff0794380c10c0ea5daab9eb05b051fa93",
+    "bytes": 45047,
+    "title": "SP 800-61 Rev. 3, Incident Response Recommendations and Considerations for Cybersecurity Risk Management: A CSF 2.0 Community Profile | CSRC",
+    "retrieved_at": "2026-11-23T14:36:25.172765+00:00"
+  },
+  {
+    "id": "nist-zero-trust",
+    "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+    "resolved_url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+    "status": 200,
+    "sha256": "c59b1df4494b8befcb6391fd1270fb9e3e6d66056f4eceb7a88f1ceb96a6dd9f",
+    "bytes": 49858,
+    "title": "SP 800-207, Zero Trust Architecture | CSRC",
+    "retrieved_at": "2026-11-23T14:36:25.391666+00:00"
+  },
+  {
+    "id": "nist-ot",
+    "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+    "resolved_url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+    "status": 200,
+    "sha256": "44290643e371fafe15c8ba927fe78c5730df448398d9ec51fd84a11006d72c33",
+    "bytes": 49931,
+    "title": "SP 800-82 Rev. 3, Guide to Operational Technology (OT) Security | CSRC",
+    "retrieved_at": "2026-11-23T14:36:25.151486+00:00"
+  },
+  {
+    "id": "nist-ai",
+    "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "resolved_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "status": 200,
+    "sha256": "60a8f6e96c18e79f19de425768fe39a5921cd71355e365887194164133b5e0ee",
+    "bytes": 92851,
+    "title": "AI Risk Management Framework | NIST",
+    "retrieved_at": "2026-11-23T14:36:25.395885+00:00"
+  },
+  {
+    "id": "nist-pqc",
+    "url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
+    "resolved_url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
+    "status": 200,
+    "sha256": "62c11542b0129bd8c478183404c540fb3c013d922cae293189a29107d26d472a",
+    "bytes": 61232,
+    "title": "Post-Quantum Cryptography | CSRC",
+    "retrieved_at": "2026-11-23T14:36:26.141221+00:00"
+  },
+  {
+    "id": "mitre-soc",
+    "url": "https://www.mitre.org/news-insights/publication/11-strategies-world-class-cybersecurity-operations-center",
+    "status": "unavailable",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "mitre-attack",
+    "url": "https://attack.mitre.org/resources/working-with-attack/",
+    "resolved_url": "https://attack.mitre.org/resources/working-with-attack/",
+    "status": 200,
+    "sha256": "3d8742442be6a538a87025bef067a32c087b6f162057fa8fc3eacd04fa5e760a",
+    "bytes": 79,
+    "title": "mitre-attack",
+    "retrieved_at": "2026-11-23T14:36:25.689898+00:00"
+  },
+  {
+    "id": "logging",
+    "url": "https://www.cyber.gov.au/resources-business-and-government/maintaining-devices-and-systems/system-administration/event-logging/best-practices-event-logging-and-threat-detection",
+    "status": "unavailable",
+    "error": "The read operation timed out"
+  },
+  {
+    "id": "ocsf",
+    "url": "https://schema.ocsf.io/",
+    "resolved_url": "https://schema.ocsf.io/",
+    "status": 200,
+    "sha256": "37726ad2d3980206a3839905828fcda5232845e9d3cb9a61727f8cf3390e8f30",
+    "bytes": 49366,
+    "title": "Open Cybersecurity Schema Framework",
+    "retrieved_at": "2026-11-23T14:36:27.177000+00:00"
+  },
+  {
+    "id": "otel",
+    "url": "https://opentelemetry.io/docs/specs/otel/logs/data-model/",
+    "resolved_url": "https://opentelemetry.io/docs/specs/otel/logs/data-model/",
+    "status": 200,
+    "sha256": "c8e34fe4d99768e1c5c114792931581b3edc9e82130d606528540baebba8bf8f",
+    "bytes": 94675,
+    "title": "Logs Data Model | OpenTelemetry",
+    "retrieved_at": "2026-11-23T14:36:26.123212+00:00"
+  },
+  {
+    "id": "sigma",
+    "url": "https://raw.githubusercontent.com/SigmaHQ/sigma-specification/main/README.md",
+    "resolved_url": "https://raw.githubusercontent.com/SigmaHQ/sigma-specification/main/README.md",
+    "status": 200,
+    "sha256": "d4fd4fe54f583f6e5063ce640bc37a650e5943910b9211b73b34d15f5bf9a457",
+    "bytes": 3570,
+    "title": "sigma",
+    "retrieved_at": "2026-11-23T14:36:26.486495+00:00"
+  },
+  {
+    "id": "aws-lake",
+    "url": "https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html",
+    "resolved_url": "https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html",
+    "status": 200,
+    "sha256": "12a16992ea7b57817eee489ffba1f15dafbe355a07da6b2021a73a90bd7f039b",
+    "bytes": 22968,
+    "title": "What is Amazon Security Lake? - Amazon Security Lake",
+    "retrieved_at": "2026-11-23T14:36:26.497118+00:00"
+  },
+  {
+    "id": "sentinel",
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/best-practices-workspace-architecture",
+    "resolved_url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
+    "status": 200,
+    "sha256": "10d2eb4b8f5a93120f5e295a890c1e09c38596884cdf75109355553f9c2c3519",
+    "bytes": 76399,
+    "title": "Design a Log Analytics Workspace Architecture - Azure Monitor | Microsoft Learn",
+    "retrieved_at": "2026-11-23T14:36:27.024645+00:00"
+  },
+  {
+    "id": "first-tlp",
+    "url": "https://www.first.org/tlp/",
+    "resolved_url": "https://www.first.org/tlp/",
+    "status": 200,
+    "sha256": "3329b698d53d6d888390ea231097dcf4692fd477caf13d60d639899e469199c6",
+    "bytes": 40048,
+    "title": "Traffic Light Protocol (TLP)",
+    "retrieved_at": "2026-11-23T14:36:27.829929+00:00"
+  },
+  {
+    "id": "nist-controls",
+    "url": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+    "resolved_url": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+    "status": 200,
+    "sha256": "64ca6b4161de51ab6af098a7d101d326f14c95e1abf721396cd8a049e8115eeb",
+    "bytes": 10448237,
+    "title": "nist-controls",
+    "retrieved_at": "2026-11-23T14:36:27.707935+00:00"
+  }
+]
